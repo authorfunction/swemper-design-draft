@@ -1,0 +1,478 @@
+#dual-view{display: flex;
+  width:100%; height: 600px;}
+#text-panel {
+  /* This panel will be resizable */
+  width: 50%; 
+  resize: horizontal;
+  overflow: auto;
+  /* Optional: constraints and styling */
+  min-width: 100px;
+  max-width: 80%;
+
+}
+#image-panel {
+  /* This panel will grow/shrink to fill space */
+  flex-grow: 1;
+  display: flex;
+  background-color:#eee;
+  justify-content: center;   /* Center horizontally */
+  align-items: center;       /* Center vertically */
+}
+
+#image-panel img {
+    /* This is the key solution */
+    max-width: 100%;
+  max-height: 100%;}
+
+
+#main {width: 80%; margin: auto;}
+a {color: black; text-decoration: none;}
+#acronym {letter-spacing: -0.5rem}
+#swemper-header {background-color: dark-grey;}
+.rotate {transform: rotate(45deg);text-align: center;}
+.large {font-size: 7.8em}
+.medium {font-size: 3em}
+.medium-smaller {font-size: 2em}
+.small {font-size: 1em}
+.smaller {font-size: 0.9em}
+.bg-black {background-color: black; opacity:0.4;}
+.bg-mygrey {background-color: rgba(220,220,220,0.2);}
+body {background-color: #f5f4f2;} /*#e3e1de*/
+.fg-mygrey {color: #f5f4f2;}
+.fg-white {color: white}
+.fg-grey {color: grey; opacity: 0.17}
+.slashed {font-variant-numeric: slashed-zero;}
+.condensed-word-space {word-spacing: -0.3em;}
+.columns { 
+/* 1. Set the MAXIMUM number of columns */
+  column-count: 3;
+  /* 2. Set the ideal/minimum width for each column */
+  /* The browser will create columns of at least this width. */
+  /* It will create 1, 2, or 3 columns (up to the max) to meet this. */
+  column-width: 250px; 
+  /* 3. (Recommended) Add a gap between columns for readability */
+  column-gap: 2rem;
+}
+.hyphenate-none {hyphens: none;}
+.hyphenate {
+  hyphens: auto;
+  -webkit-hyphenate-limit-before: 3;
+  -webkit-hyphenate-limit-after: 3;
+  /* 2. Standard property (less supported, but good for future-proofing) */
+  hyphenate-limit-chars: 6 3 3; /* min word length, min chars before, min chars after */
+}
+.columns > :first-child {
+  margin-top: 0;
+}
+
+.indented-prose p {
+  /* 1. Removes the default space above and below paragraphs */
+  margin-top: 0.1em;
+  margin-bottom: 0;
+}
+.indented-prose p + p {
+  /* 2. Selects every <p> that directly follows another <p> 
+     (i.e., all paragraphs except the first one) */
+  text-indent: 1.5em; /* You can adjust this value */
+}
+
+.list-squares ol {
+  list-style-type: square;
+  padding-left: 1em;
+}
+.break-links {overflow-wrap: break-word;}
+.break-word-aggressive {word-break: break-all;}
+
+.ibm-plex-mono-thin {
+  font-family: "ibm-plex-mono", monospace;  /*"ibm-plex-mono" "IBM Plex Mono"*/
+  font-weight: 100;
+  font-style: normal;
+}
+
+.ibm-plex-mono-extralight {
+  font-family: "ibm-plex-mono", monospace;
+  font-weight: 200;
+  font-style: normal;
+}
+
+.ibm-plex-mono-light {
+  font-family: "ibm-plex-mono", monospace;
+  font-weight: 300;
+  font-style: normal;
+  font-variant-numeric: slashed-zero;
+}
+
+.ibm-plex-mono-regular {
+  font-family: "ibm-plex-mono", times;
+  font-weight: 400;
+  font-style: normal;
+  font-variant-numeric: slashed-zero;
+}
+
+.ibm-plex-mono-medium {
+  font-family: "ibm-plex-mono", times;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.ibm-plex-mono-semibold {
+  font-family: "ibm-plex-mono", times;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.ibm-plex-mono-bold {
+  font-family: "ibm-plex-mono", times;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.ibm-plex-mono-thin-italic {
+  font-family: "ibm-plex-mono", times;
+  font-weight: 100;
+  font-style: italic;
+}
+
+.ibm-plex-mono-extralight-italic {
+  font-family: "ibm-plex-mono", times;
+  font-weight: 200;
+  font-style: italic;
+}
+
+.ibm-plex-mono-light-italic {
+  font-family: "ibm-plex-mono", times;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.ibm-plex-mono-regular-italic {
+  font-family: "ibm-plex-mono", monospace;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.ibm-plex-mono-medium-italic {
+  font-family: "ibm-plex-mono", monospace;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.ibm-plex-mono-semibold-italic {
+  font-family: "ibm-plex-mono, monospace;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.ibm-plex-mono-bold-italic {
+  font-family: "ibm-plex-mono", monospace;
+  font-weight: 700;
+  font-style: italic;
+}
+
+/*serif plex
+
+# IBM Plex Serif: CSS classes*/
+
+.ibm-plex-serif-thin {
+  font-family: "IBM Plex Serif", serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.ibm-plex-serif-extralight {
+  font-family: "IBM Plex Serif", serif;
+  font-weight: 200;
+  font-style: normal;
+}
+
+.ibm-plex-serif-light {
+  font-family: "IBM Plex Serif", serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.ibm-plex-serif-regular {
+  font-family: "IBM Plex Serif", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.ibm-plex-serif-medium {
+  font-family: "IBM Plex Serif", serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.ibm-plex-serif-semibold {
+  font-family: "IBM Plex Serif", serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.ibm-plex-serif-bold {
+  font-family: "IBM Plex Serif", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.ibm-plex-serif-thin-italic {
+  font-family: "IBM Plex Serif", serif;
+  font-weight: 100;
+  font-style: italic;
+}
+
+.ibm-plex-serif-extralight-italic {
+  font-family: "IBM Plex Serif", serif;
+  font-weight: 200;
+  font-style: italic;
+}
+
+.ibm-plex-serif-light-italic {
+  font-family: "IBM Plex Serif", serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.ibm-plex-serif-regular-italic {
+  font-family: "IBM Plex Serif", serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.ibm-plex-serif-medium-italic {
+  font-family: "IBM Plex Serif", serif;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.ibm-plex-serif-semibold-italic {
+  font-family: "IBM Plex Serif", serif;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.ibm-plex-serif-bold-italic {
+  font-family: "IBM Plex Serif", serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+/*sans plex*/
+// <weight>: Use a value from 100 to 700
+// <uniquifier>: Use a unique and descriptive class name
+
+.ibm-plex-sans-<uniquifier> {
+  font-family: "ibm-plex-sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+.ibm-plex-sans-regular {
+  font-family: "ibm-plex-sans", times; 
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+   font-variant-numeric: slashed-zero;
+}
+
+.ibm-plex-sans-light {
+  font-family: "ibm-plex-sans", times;
+  font-optical-sizing: auto;
+  font-weight: 100; /*should be 200*/
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+   font-variant-numeric: slashed-zero;
+}
+
+.ibm-plex-sans-light-italic {
+  font-family: "ibm-plex-sans", times;
+  font-optical-sizing: auto;
+  font-weight: 100; /*should be 200*/
+  font-style: italic;
+  font-variation-settings:
+    "wdth" 100;
+   font-variant-numeric: slashed-zero;
+}
+
+.ibm-plex-sans-extralight {
+  font-family: "ibm-plex-sans", times;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+   font-variant-numeric: slashed-zero;
+}
+
+.ibm-plex-sans-extralight-italic {
+  font-family: "ibm-plex-sans", times;
+  font-optical-sizing: auto;
+  font-weight: 100;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+   font-variant-numeric: slashed-zero;
+}
+
+/* TAB STYLING */
+/* Style for the tab button container */
+.tab-buttons {
+  display: flex;  /* Forces buttons into a single row */
+  width: 100%;    /* Ensures the container spans the full width */
+    border-bottom: 0px solid #ccc;
+    overflow: hidden;
+}
+
+/* Style for each tab button */
+.tab-link {
+    background-color: #eee;
+    border: 0px solid #ccc;
+    border-bottom: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px 5px 0 0;
+    margin-right: 5px;
+/* === Text Overflow Properties === */
+  overflow: hidden;         /* Hides any text that overflows the button's box */
+  white-space: nowrap;      /* Prevents text inside the button from wrapping */
+  text-overflow: ellipsis;  /* Adds the "..." */
+  
+  /* === Flex-Shrink Properties === */
+  /* These are often the missing piece. */
+  flex-shrink: 1; /* Allows this item to shrink if needed (this is default) */
+  min-width: 0;   /* !! Allows the item to shrink *smaller* than its content */
+}
+
+/* Style for the active tab button */
+.tab-link.active {
+    background-color: #fff;
+    border-bottom: 0px solid #fff;
+    position: relative;
+    top: 0px; /* Lifts it up to cover the container's border */
+    font-weight: 500;
+}
+
+/* Style for the tab content container */
+.tab-content {
+    padding: 20px;
+    border: 0px solid #ccc;
+    border-top: none;
+    background-color: #fff;
+    border-radius: 0 0 5px 5px;
+}
+
+/* Hide all tab panels by default */
+.tab-panel {
+    display: none;
+}
+
+/* Show only the active tab panel */
+.tab-panel.active {
+    display: block;
+
+/* === NEW RULES TO LIMIT HEIGHT AND ADD SCROLL === */
+    height: 600px;  /* Set your desired max height */
+    overflow-y: auto;   /* Add a scrollbar only when content overflows */
+    
+    /* Add a little padding to the right to prevent text from hitting the scrollbar */
+    padding-right: 15px; 
+}
+
+/* === NEW STYLED SCROLLBAR RULES === */
+
+/* For WebKit-based browsers (Chrome, Safari, Edge) */
+.tab-panel.active::-webkit-scrollbar {
+    width: 10px; /* Width of the entire scrollbar */
+}
+
+.tab-panel.active::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Color of the tracking area */
+    border-radius: 10px;
+}
+
+.tab-panel.active::-webkit-scrollbar-thumb {
+    background: #888; /* Color of the scrollbar handle */
+    border-radius: 10px; /* Roundness of the handle */
+}
+
+.tab-panel.active::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Handle color on hover */
+}
+
+/* For Firefox */
+.tab-panel.active {
+  scrollbar-width: thin;          /* "auto" or "thin" */
+  scrollbar-color: #888 #f1f1f1;  /* (thumb-color track-color) */
+}
+
+/* === NEW BUTTON ROW STYLES ADDED HERE === */
+.button-row {
+    display: flex;
+    flex-wrap: wrap; /* Allows buttons to wrap on small screens */
+    gap: 8px; /* Spacing between buttons, similar to margin-right on tabs */
+    margin-top: 20px; /* Add some space above the button row */
+    margin-bottom: 20px; /* Add some space below the button row */
+}
+
+.simple-button {
+    /* Base styles from .tab-link */
+    background-color: #eee;
+    padding: 6px 15px;
+    cursor: pointer;
+    NOTfont-size: 16px;
+    
+    /* Font style from .tab-link in HTML (explicitly set here) */
+    font-family: "ibm-plex-sans", times;
+    font-weight: 400;
+    font-variant-numeric: slashed-zero;
+
+    /* User's request: thin border */
+    border: 1px solid #ccc;
+    
+    /* User's request: simple rectangle (slight rounding to match page) */
+    border-radius: 5px; /* Matches the tab-content radius */
+    
+    /* Ensure no default browser button styles interfere */
+    text-decoration: none;
+    color: black;
+    display: inline-block; /* Behaves well in a flex container */
+}
+
+/* Add a hover/active state like the active tab */
+.simple-button:hover,
+.simple-button:focus {
+    background-color: #fff; /* Same as active tab */
+    border-color: #aaa; /* Slightly darker border on hover */
+    outline: none; /* Remove default focus outline */
+}
+/* === END OF NEW BUTTON ROW STYLES === */
+
+/* === NEW CONTEXTUAL NAVIGATION STYLES === */
+#navigation-field {
+    display: flex;              /* Use flexbox for layout */
+    justify-content: space-between; /* Pushes text left, buttons right */
+    align-items: center;        /* Vertically centers the text and button group */
+    margin-bottom: 20px;      /* Adds space below, consistent with .button-row */
+    flex-wrap: wrap;            /* Allow wrapping on very small screens */
+    gap: 15px;                  /* Add gap for when it wraps */
+}
+
+/* Remove default margins from h2 to allow perfect vertical centering */
+#navigation-field h2 {
+    margin: 0;
+    /* Font styles are inherited from the class in HTML */
+}
+
+.navigation-buttons {
+    display: flex; /* Makes the buttons line up horizontally */
+    gap: 8px;      /* Consistent spacing, same as .button-row */
+    flex-shrink: 0; /* Prevents buttons from shrinking/wrapping unless container is too small */
+}
+/* === END OF NEW STYLES === */
