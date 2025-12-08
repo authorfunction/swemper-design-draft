@@ -483,7 +483,7 @@ function fillAllBinarySpans() {
     const computedStyle = window.getComputedStyle(styleSource);
     filler.style.fontFamily = computedStyle.fontFamily; //"ibm-plex-sans";
     filler.style.fontSize = computedStyle.fontSize;
-    filler.style.fontWeight = computedStyle.fontWeight;
+    filler.style.fontWeight = computedStyle.fontWeight - 100;
     filler.style.letterSpacing = computedStyle.letterSpacing;
     filler.style.lineHeight = computedStyle.lineHeight;
 
