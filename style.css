@@ -68,7 +68,7 @@ body {
 }
 
 #swemper {
-  background-color: #5d5d4a0d;
+  /*background-color: #5d5d4a0d;*/
   padding-top: 0px;
   margin-top: 0px;
 }
@@ -145,7 +145,7 @@ a:hover {
 
 /*.fg-grey {color: grey; opacity: 0.19;} /*0.17*/
 .fg-grey {
-  color: rgba(158, 148, 128, 0.21);
+  color: rgba(158, 148, 128, 0.06);
 }
 
 /*0.17*/
