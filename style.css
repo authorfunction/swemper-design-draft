@@ -11,7 +11,7 @@ body {
 }
 
 #main {
-  height: 78vh;
+  height: 98vh;
   /* background-color: #f5f4f2; */
   padding-bottom: 0.6em;
   padding-top: 0.3em;
@@ -82,6 +82,7 @@ body {
 
 .binary-filler {
   letter-spacing: normal;
+  font-feature-settings: "tnum";
 }
 
 a {
@@ -118,8 +119,16 @@ a:hover {
 
 .menu-option {
   margin: 0;
-  font-size: 2.5vw;
+  font-size: 2.5em;
   width: fit-content;
+}
+
+.menu-item-wrapper {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  white-space: nowrap;
 }
 
 .arrow-icon {
@@ -138,7 +147,7 @@ a:hover {
   font-size: 1.1em;
   background-color: rgba(245, 244, 242, 0.75);
   /* Slightly opaque match to main bg */
-  padding: 1rem;
+  /* padding: 1rem; */
   border-radius: 4px;
   /* Optional: softens the box */
   backdrop-filter: blur(3px);
@@ -180,7 +189,7 @@ a:hover {
 
 /*.fg-grey {color: grey; opacity: 0.19;} /*0.17*/
 .fg-grey {
-  color: rgba(158, 148, 128, 0.09);
+  color: rgba(158, 148, 128, 0.59);
 }
 
 /*0.17*/

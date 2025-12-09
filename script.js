@@ -109,7 +109,9 @@ document.addEventListener('DOMContentLoaded', () => {
   swapImage();
 
   // Run Binary-Filler Code ---
-  fillAllBinarySpans();
+  document.fonts.ready.then(() => {
+    fillAllBinarySpans();
+  });
   window.addEventListener('resize', fillAllBinarySpans);
 
   // Run Code for Indexing numbered-header ---
@@ -421,87 +423,118 @@ function fillAllBinarySpans() {
   const fillers = document.querySelectorAll('.binary-filler');
 
   fillers.forEach(filler => {
-    const precedingElement = filler.previousElementSibling;
-    const container = filler.closest('#swemper');
-    if (!container) return;
+    // 1. Identify the STYLE container (parents are usually good for font styles)
+    const styleContainer = filler.parentElement;
+    if (!styleContainer) return;
 
-    // Use getBoundingClientRect for all container measurements.
-    const containerRect = container.getBoundingClientRect();
-    let remainingWidth = 0;
-    let styleSource = null;
-
-    // ---
-    // CASE 1: The "SWEMPER" line (filler is a sibling)
-    // We now use getBoundingClientRect for the most precise measurement.
-    // ---
-    if (precedingElement) {
-      styleSource = precedingElement;
-
-      // Get the precise pixel boundary of the preceding element
-      const precedingRect = precedingElement.getBoundingClientRect();
-
-      // Calculate remaining width by comparing right edges
-      remainingWidth = containerRect.right - precedingRect.right;
-
-      // === MODIFICATION ===
-      // Use inline-block for predictable box alignment
-      precedingElement.style.display = 'inline-block';
-      filler.style.display = 'inline-block';
-      // === END MODIFICATION ===
-
-      // Fix for "raised text" alignment
-      precedingElement.style.verticalAlign = 'bottom';
-      filler.style.verticalAlign = 'bottom';
-
-      // ---
-      // CASE 2: The "Digitalisering" line (filler is a child)
-      // This logic remains the same, as it already uses the precise Range method.
-      // ---
-    } else if (filler.parentElement && filler.parentElement.id === 'text') {
-      styleSource = filler.parentElement;
-      filler.style.verticalAlign = 'bottom'; // Align this one too
-
-      const textNode = filler.previousSibling;
-
-      if (textNode && textNode.nodeType === Node.TEXT_NODE && textNode.textContent.length > 0) {
-        const range = document.createRange();
-        range.setStart(textNode, textNode.length - 1);
-        range.setEnd(textNode, textNode.length);
-
-        const lastCharRect = range.getBoundingClientRect();
-
-        // Calculate remaining width
-        remainingWidth = containerRect.right - lastCharRect.right;
+    // 2. Identify the LAYOUT container (closest block-like parent)
+    // We walk up the DOM until we find an element that is NOT inline.
+    // This allows us to fill the "line" even if wrapped in a span.
+    let layoutContainer = styleContainer;
+    while (layoutContainer && layoutContainer.parentElement) {
+      const display = window.getComputedStyle(layoutContainer).display;
+      if (display === 'inline') {
+        layoutContainer = layoutContainer.parentElement;
+      } else {
+        break;
       }
     }
 
+    // Fallback if we somehow didn't find one (shouldn't happen in <body>)
+    if (!layoutContainer) layoutContainer = styleContainer;
+
+
+    // 3. Get container measurements
+    const containerRect = layoutContainer.getBoundingClientRect();
+    const containerStyle = window.getComputedStyle(layoutContainer);
+
+    // We want to fill up to the right padding edge of the container
+    const paddingRight = parseFloat(containerStyle.paddingRight) || 0;
+    const borderRight = parseFloat(containerStyle.borderRightWidth) || 0;
+    const containerRightEdge = containerRect.right - paddingRight - borderRight;
+
+    // 4. Determine where the "gap" starts
+    let startEdge = containerRect.left + (parseFloat(containerStyle.paddingLeft) || 0);
+
+    // Check previous sibling (Element)
+    const prevEl = filler.previousElementSibling;
+
+    // Check previous sibling (Text Node)
+    const prevNode = filler.previousSibling;
+
+    let styleSource = styleContainer; // Default style source
+
+    if (prevEl) {
+      // Case A: Previous Element Sibling
+      const prevRect = prevEl.getBoundingClientRect();
+      startEdge = prevRect.right;
+      styleSource = prevEl;
+
+      // Ensure they align nicely
+      prevEl.style.display = 'inline-block';
+      filler.style.display = 'inline-block';
+      prevEl.style.verticalAlign = 'bottom';
+      filler.style.verticalAlign = 'bottom';
+
+    } else if (prevNode && prevNode.nodeType === Node.TEXT_NODE && prevNode.textContent.trim().length > 0) {
+      // Case B: Previous Text Node
+      // We use a range to find exactly where the text ends
+      const range = document.createRange();
+      range.selectNodeContents(prevNode);
+      // Collapse to end to get the rect of the last character area
+      const rects = range.getClientRects();
+      if (rects.length > 0) {
+        const lastRect = rects[rects.length - 1]; // The very last line of text
+        startEdge = lastRect.right;
+      }
+      styleSource = styleContainer;
+      filler.style.display = 'inline-block';
+      filler.style.verticalAlign = 'bottom';
+    } else {
+      // Case C: No previous content, start from container left (already set)
+      filler.style.display = 'inline-block';
+      filler.style.verticalAlign = 'bottom';
+      styleSource = styleContainer;
+    }
+
+
+    // 4. Calculate Available Width
+    const remainingWidth = (containerRightEdge - startEdge) - 5;
+
     // ---
-    // STYLING & FILLING (Same as before)
+    // STYLING & FILLING
     // ---
-    if (!styleSource) styleSource = filler.parentElement; // Fallback
 
     // Copy font metrics for width calculation
     const computedStyle = window.getComputedStyle(styleSource);
-    filler.style.fontFamily = computedStyle.fontFamily; //"ibm-plex-sans";
+    filler.style.fontFamily = computedStyle.fontFamily;
     filler.style.fontSize = computedStyle.fontSize;
-    filler.style.fontWeight = computedStyle.fontWeight - 100;
+    filler.style.fontWeight = computedStyle.fontWeight; // Keep weight or -100 if preferred? Original had -100
+    // filler.style.fontWeight = (parseInt(computedStyle.fontWeight) - 100).toString(); // Logic from before, maybe optional?
+    // Let's stick to the previous logic of making it slightly lighter if possible, or just same.
+    // The previous code did: filler.style.fontWeight = computedStyle.fontWeight - 100;
+    // Let's preserve that visual quirk if it parses correctly, otherwise fallback.
+    let targetWeight = parseInt(computedStyle.fontWeight) || 400;
+    if (targetWeight > 100) targetWeight -= 100;
+    filler.style.fontWeight = targetWeight;
+
     filler.style.letterSpacing = computedStyle.letterSpacing;
     filler.style.lineHeight = computedStyle.lineHeight;
+    // filler.style.color = computedStyle.color; // REMOVED: Inherit from CSS class .fg-grey instead
+
+    // Inherit opacity if needed, or specific classes handle it (.fg-grey)
 
     const charWidth = getCharWidth(styleSource);
 
     // ---
-    // LEAD CHAR LOGIC (The buffer is now 0)
+    // LEAD CHAR LOGIC
     // ---
     const leadChar = '0';
-
-    // We remove the buffer because our measurements are precise.
-    // Math.floor() will prevent overflow.
     const bufferChars = 0;
 
     if (charWidth > 0 && remainingWidth > 0) {
-
-      const totalCharCount = Math.floor(remainingWidth / charWidth);//Math.floor(remainingWidth / charWidth);
+      // Estimate count
+      const totalCharCount = Math.floor(remainingWidth / charWidth);
       const binaryCharCount = totalCharCount - leadChar.length - bufferChars;
 
       if (binaryCharCount > 0) {
@@ -510,12 +543,11 @@ function fillAllBinarySpans() {
 
         filler.style.whiteSpace = 'nowrap';
         filler.style.overflow = 'hidden';
-        filler.style.display = 'inline-block';
       } else {
-        filler.textContent = ''; // Clear if it won't fit
+        filler.textContent = '';
       }
     } else {
-      filler.textContent = ''; // Clear if no width
+      filler.textContent = '';
     }
   });
 }

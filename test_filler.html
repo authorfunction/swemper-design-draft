@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary Filler Test</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            padding: 50px;
+            font-family: sans-serif;
+        }
+
+        .test-box {
+            border: 1px solid red;
+            margin-bottom: 20px;
+            padding: 10px;
+            width: 50%;
+        }
+
+        .full-width {
+            width: 100%;
+            border-color: blue;
+        }
+
+        .fixed-width {
+            width: 300px;
+            border-color: green;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Binary Filler Test Cases</h1>
+
+    <h2>1. Simple Full Width (Blue)</h2>
+    <div class="test-box full-width">
+        Start <span class="binary-filler"></span>
+    </div>
+
+    <h2>2. Fixed Width 300px (Green)</h2>
+    <div class="test-box fixed-width">
+        Start <span class="binary-filler"></span>
+    </div>
+
+    <h2>3. After Text Node</h2>
+    <div class="test-box fixed-width">
+        Some text here <span class="binary-filler"></span>
+    </div>
+
+    <h2>4. After Element (Bold)</h2>
+    <div class="test-box fixed-width">
+        <b>Bold Element</b><span class="binary-filler"></span>
+    </div>
+
+    <h2>5. Nested Structure</h2>
+    <div class="test-box fixed-width">
+        <div>
+            <span>Nested Span</span><span class="binary-filler"></span>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/canvas-dither@1.0.1/build/dither.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
