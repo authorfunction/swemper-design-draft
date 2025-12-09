@@ -1,88 +1,13 @@
-/*
- * 1. THE MAIN CONTAINER
- * This now holds the background image.
- */
+/* =========================================
+   1. GLOBAL & RESET
+   ========================================= */
+
 body {
   margin: 0;
   padding: 0;
   background-color: #f5f4f2;
   /* #e3e1de */
   /* background-color: #ffdd40; */
-}
-
-#main {
-  height: 98vh;
-  /* background-color: #f5f4f2; */
-  padding-bottom: 0.6em;
-  padding-top: 0.3em;
-  /* CRITICAL: This anchors the absolute canvas */
-  position: relative;
-  /* Good practice to prevent any overflow bugs */
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  /* Stack items vertically */
-  width: 90%;
-  margin: auto;
-}
-
-#text {
-  display: block;
-  line-height: 1.1em;
-}
-
-.dense-lines {
-  line-height: 2em;
-}
-
-#dither-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  /* Puts the canvas at the very bottom of the #main stack */
-  z-index: 0;
-  opacity: 0.5;
-  /*
-  filter: contrast(1) sepia(1) hue-rotate(
-279deg);
-  background-color: red; /* Or #ff0000
-  */
-}
-
-/* * LIFT CONTENT
- * We must give the content a z-index so it sits on top of the canvas.
- */
-#swemper,
-#left,
-#right,
-#about-text,
-#menu {
-  position: relative;
-  z-index: 1;
-  padding-bottom: 1em;
-}
-
-#bottom {
-  margin-top: auto;
-}
-
-#swemper {
-  /*background-color: #5d5d4a0d;*/
-  padding-top: 0px;
-  margin-top: 0px;
-}
-
-#acronym {
-  letter-spacing: -0.4rem;
-  line-height: 1.12em;
-  mix-blend-mode: difference;
-}
-
-.binary-filler {
-  letter-spacing: normal;
-  font-feature-settings: "tnum";
 }
 
 a {
@@ -99,6 +24,65 @@ a:hover {
   /* background-color: yellow; */
 }
 
+
+/* =========================================
+   2. MAIN LAYOUT
+   ========================================= */
+
+/* 
+ * The Main Container
+ * This holds the background image.
+ */
+#main {
+  height: 98vh;
+  /* background-color: #f5f4f2; */
+  padding-bottom: 0.6em;
+  padding-top: 0.3em;
+  /* CRITICAL: This anchors the absolute canvas */
+  position: relative;
+  /* Good practice to prevent any overflow bugs */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  /* Stack items vertically */
+  width: 90%;
+  margin: auto;
+}
+
+#dither-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Puts the canvas at the very bottom of the #main stack */
+  z-index: 0;
+  opacity: 0.5;
+  /*
+  filter: contrast(1) sepia(1) hue-rotate(
+  279deg);
+  background-color: red; /* Or #ff0000
+  */
+}
+
+/* 
+ * LIFT CONTENT
+ * We must give the content a z-index so it sits on top of the canvas.
+ */
+#swemper,
+#left,
+#right,
+#about-text,
+#menu {
+  position: relative;
+  z-index: 1;
+  padding-bottom: 1em;
+}
+
+#bottom {
+  margin-top: auto;
+}
+
 #left {
   display: flex;
   justify-content: space-between;
@@ -112,51 +96,12 @@ a:hover {
   /* Add gap for when it wraps */
 }
 
-#menu a {
-  display: block;
-  width: fit-content;
-}
 
-.menu-option {
-  margin: 0;
-  font-size: 2.5em;
-  width: fit-content;
-}
+/* =========================================
+   3. TYPOGRAPHY & UTILITIES
+   ========================================= */
 
-.menu-item-wrapper {
-  width: 100%;
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: baseline;
-  white-space: nowrap;
-}
-
-.arrow-icon {
-  position: relative;
-  /* Adjust this value to move it further down or up */
-  top: 0.05em;
-  left: 0.05em;
-}
-
-#about-text {
-  top: 0.1em;
-  visibility: hidden;
-  max-width:
-    /*56ch*/
-    40ch;
-  font-size: 1.1em;
-  background-color: rgba(245, 244, 242, 0.75);
-  /* Slightly opaque match to main bg */
-  /* padding: 1rem; */
-  border-radius: 4px;
-  /* Optional: softens the box */
-  backdrop-filter: blur(3px);
-}
-
-#menu:has(a:hover)~#about-text {
-  visibility: visible;
-}
-
+/* Sizes */
 .large {
   font-size:
     /*7.9em*/
@@ -179,6 +124,7 @@ a:hover {
   font-size: 0.9em;
 }
 
+/* Colors */
 .bg-black {
   background-color: black;
 }
@@ -187,12 +133,16 @@ a:hover {
   color: white;
 }
 
-/*.fg-grey {color: grey; opacity: 0.19;} /*0.17*/
+/* .fg-grey {color: grey; opacity: 0.19;} /*0.17*/
 .fg-grey {
   color: rgba(158, 148, 128, 0.59);
 }
 
-/*0.17*/
+/* Spacing & Formatting Helpers */
+.dense-lines {
+  line-height: 2em;
+}
+
 .slashed {
   font-variant-numeric: slashed-zero;
 }
@@ -201,17 +151,14 @@ a:hover {
   word-spacing: -0.3em;
 }
 
-.columns {
-  /* 1. Set the MAXIMUM number of columns */
-  column-count: 3;
-  /* 2. Set the ideal/minimum width for each column */
-  /* The browser will create columns of at least this width. */
-  /* It will create 1, 2, or 3 columns (up to the max) to meet this. */
-  column-width: 250px;
-  /* 3. (Recommended) Add a gap between columns for readability */
-  column-gap: 2rem;
+.arrow-icon {
+  position: relative;
+  /* Adjust this value to move it further down or up */
+  top: 0.05em;
+  left: 0.05em;
 }
 
+/* Hyphenation & Breaking */
 .hyphenate-none {
   hyphens: none;
 }
@@ -223,6 +170,95 @@ a:hover {
   /* 2. Standard property (less supported, but good for future-proofing) */
   hyphenate-limit-chars: 6 3 3;
   /* min word length, min chars before, min chars after */
+}
+
+.break-links {
+  overflow-wrap: break-word;
+}
+
+.break-word-aggressive {
+  word-break: break-all;
+}
+
+
+/* =========================================
+   4. COMPONENTS
+   ========================================= */
+
+/* --- SWEMPER Header --- */
+#swemper {
+  /*background-color: #5d5d4a0d;*/
+  padding-top: 0px;
+  margin-top: 0px;
+}
+
+#acronym {
+  letter-spacing: -0.4rem;
+  line-height: 1.12em;
+  mix-blend-mode: difference;
+}
+
+#text {
+  display: block;
+  line-height: 1.1em;
+}
+
+/* --- Menu --- */
+#menu a {
+  display: block;
+  width: fit-content;
+}
+
+.menu-option {
+  margin: 0;
+  font-size: 2.5em;
+  width: fit-content;
+}
+
+.menu-item-wrapper {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  white-space: nowrap;
+}
+
+/* --- Binary Filler --- */
+.binary-filler {
+  letter-spacing: normal;
+  font-feature-settings: "tnum";
+}
+
+/* --- About Overlay --- */
+#about-text {
+  top: 0.1em;
+  visibility: hidden;
+  max-width:
+    /*56ch*/
+    40ch;
+  font-size: 1.1em;
+  background-color: rgba(245, 244, 242, 0.75);
+  /* Slightly opaque match to main bg */
+  /* padding: 1rem; */
+  border-radius: 4px;
+  /* Optional: softens the box */
+  backdrop-filter: blur(3px);
+}
+
+#menu:has(a:hover)~#about-text {
+  visibility: visible;
+}
+
+/* --- Prose & Lists --- */
+.columns {
+  /* 1. Set the MAXIMUM number of columns */
+  column-count: 3;
+  /* 2. Set the ideal/minimum width for each column */
+  /* The browser will create columns of at least this width. */
+  /* It will create 1, 2, or 3 columns (up to the max) to meet this. */
+  column-width: 250px;
+  /* 3. (Recommended) Add a gap between columns for readability */
+  column-gap: 2rem;
 }
 
 .columns> :first-child {
@@ -247,14 +283,12 @@ a:hover {
   padding-left: 1em;
 }
 
-.break-links {
-  overflow-wrap: break-word;
-}
 
-.break-word-aggressive {
-  word-break: break-all;
-}
+/* =========================================
+   5. FONT DEFINITIONS (IBM PLEX)
+   ========================================= */
 
+/* --- IBM Plex Mono --- */
 .ibm-plex-mono-thin {
   font-family: "IBM Plex Mono", monospace;
   /*"ibm-plex-mono" "IBM Plex Mono"*/
@@ -343,10 +377,7 @@ a:hover {
   font-style: italic;
 }
 
-/* * serif plex
- * IBM Plex Serif: CSS classes
- */
-
+/* --- IBM Plex Serif --- */
 .ibm-plex-serif-thin {
   font-family: "IBM Plex Serif", serif;
   font-weight: 100;
@@ -431,17 +462,17 @@ a:hover {
   font-style: italic;
 }
 
-/* sans plex */
-/* <weight>: Use a value from 100 to 700 */
-/* <uniquifier>: Use a unique and descriptive class name */
-
-/*.ibm-plex-sans-<uniquifier> {
+/* --- IBM Plex Sans --- */
+/*
+css
+.ibm-plex-sans-<uniquifier> {
   font-family: "IBM Plex Sans", sans-serif;
   font-optical-sizing: auto;
   font-weight: <weight>;
   font-style: normal;
   font-variation-settings: "wdth" 100;
-}*/
+}
+*/
 
 .ibm-plex-sans-regular {
   font-family: "IBM Plex Sans", sans-serif;
