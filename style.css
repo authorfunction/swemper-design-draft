@@ -57,6 +57,7 @@ body {
 #swemper,
 #left,
 #right,
+#about-text,
 #menu {
   position: relative;
   z-index: 1;
@@ -74,8 +75,8 @@ body {
 }
 
 #acronym {
-  letter-spacing: -0.5rem;
-  line-height: 1.3em;
+  letter-spacing: -0.4rem;
+  line-height: 1.12em;
   mix-blend-mode: difference;
 }
 
@@ -117,14 +118,48 @@ a:hover {
 
 .menu-option {
   margin: 0;
+  font-size: 2.5vw;
+  width: fit-content;
+}
+
+.arrow-icon {
+  position: relative;
+  /* Adjust this value to move it further down or up */
+  top: 0.05em;
+  left: 0.05em;
+}
+
+#about-text {
+  top: 0.1em;
+  visibility: hidden;
+  max-width:
+    /*56ch*/
+    40ch;
+  font-size: 1.1em;
+  background-color: rgba(245, 244, 242, 0.75);
+  /* Slightly opaque match to main bg */
+  padding: 1rem;
+  border-radius: 4px;
+  /* Optional: softens the box */
+  backdrop-filter: blur(3px);
+}
+
+#menu:has(a:hover)~#about-text {
+  visibility: visible;
 }
 
 .large {
-  font-size: 7.9em;
+  font-size:
+    /*7.9em*/
+    7.2em;
 }
 
 .medium {
   font-size: 3em;
+}
+
+.medium-small {
+  font-size: 2.5em;
 }
 
 .small {
@@ -145,7 +180,7 @@ a:hover {
 
 /*.fg-grey {color: grey; opacity: 0.19;} /*0.17*/
 .fg-grey {
-  color: rgba(158, 148, 128, 0.06);
+  color: rgba(158, 148, 128, 0.09);
 }
 
 /*0.17*/
@@ -212,89 +247,89 @@ a:hover {
 }
 
 .ibm-plex-mono-thin {
-  font-family: "ibm-plex-mono", monospace;
+  font-family: "IBM Plex Mono", monospace;
   /*"ibm-plex-mono" "IBM Plex Mono"*/
   font-weight: 100;
   font-style: normal;
 }
 
 .ibm-plex-mono-extralight {
-  font-family: "ibm-plex-mono", monospace;
+  font-family: "IBM Plex Mono", monospace;
   font-weight: 200;
   font-style: normal;
 }
 
 .ibm-plex-mono-light {
-  font-family: "ibm-plex-mono", monospace;
+  font-family: "IBM Plex Mono", monospace;
   font-weight: 300;
   font-style: normal;
   font-variant-numeric: slashed-zero;
 }
 
 .ibm-plex-mono-regular {
-  font-family: "ibm-plex-mono", times;
+  font-family: "IBM Plex Mono", monospace;
   font-weight: 400;
   font-style: normal;
   font-variant-numeric: slashed-zero;
 }
 
 .ibm-plex-mono-medium {
-  font-family: "ibm-plex-mono", times;
+  font-family: "IBM Plex Mono", monospace;
   font-weight: 500;
   font-style: normal;
 }
 
 .ibm-plex-mono-semibold {
-  font-family: "ibm-plex-mono", times;
+  font-family: "IBM Plex Mono", monospace;
   font-weight: 600;
   font-style: normal;
 }
 
 .ibm-plex-mono-bold {
-  font-family: "ibm-plex-mono", times;
+  font-family: "IBM Plex Mono", monospace;
   font-weight: 700;
   font-style: normal;
 }
 
 .ibm-plex-mono-thin-italic {
-  font-family: "ibm-plex-mono", times;
+  font-family: "IBM Plex Mono", monospace;
   font-weight: 100;
   font-style: italic;
 }
 
 .ibm-plex-mono-extralight-italic {
-  font-family: "ibm-plex-mono", times;
+  font-family: "IBM Plex Mono", monospace;
   font-weight: 200;
   font-style: italic;
 }
 
 .ibm-plex-mono-light-italic {
-  font-family: "ibm-plex-mono", times;
+  font-family: "IBM Plex Mono", monospace;
   font-weight: 300;
   font-style: italic;
 }
 
 .ibm-plex-mono-regular-italic {
-  font-family: "ibm-plex-mono", monospace;
+  font-family: "IBM Plex Mono", monospace;
   font-weight: 400;
   font-style: italic;
 }
 
 .ibm-plex-mono-medium-italic {
-  font-family: "ibm-plex-mono", monospace;
+  font-family: "IBM Plex Mono", monospace;
   font-weight: 500;
   font-style: italic;
 }
 
 .ibm-plex-mono-semibold-italic {
-  font-family: "ibm-plex-mono", monospace;
+  font-family: "IBM Plex Mono", monospace;
   /* Fixed missing quote */
   font-weight: 600;
   font-style: italic;
 }
 
 .ibm-plex-mono-bold-italic {
-  font-family: "ibm-plex-mono", monospace;
+  font-family: "IBM Plex Mono", monospace;
   font-weight: 700;
   font-style: italic;
 }
@@ -392,7 +427,7 @@ a:hover {
 /* <uniquifier>: Use a unique and descriptive class name */
 
 /*.ibm-plex-sans-<uniquifier> {
-  font-family: "ibm-plex-sans", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-optical-sizing: auto;
   font-weight: <weight>;
   font-style: normal;
@@ -400,7 +435,7 @@ a:hover {
 }*/
 
 .ibm-plex-sans-regular {
-  font-family: "ibm-plex-sans", times;
+  font-family: "IBM Plex Sans", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
@@ -410,7 +445,7 @@ a:hover {
 
 
 .ibm-plex-sans-light {
-  font-family: "ibm-plex-sans", times;
+  font-family: "IBM Plex Sans", sans-serif;
   font-optical-sizing: auto;
   font-weight: 300;
   font-style: normal;
@@ -419,7 +454,7 @@ a:hover {
 }
 
 .ibm-plex-sans-extralight {
-  font-family: "ibm-plex-sans", times;
+  font-family: "IBM Plex Sans", sans-serif;
   font-optical-sizing: auto;
   font-weight: 200;
   font-style: normal;
@@ -428,7 +463,7 @@ a:hover {
 }
 
 .ibm-plex-sans-thin {
-  font-family: "ibm-plex-sans", times;
+  font-family: "IBM Plex Sans", sans-serif;
   font-optical-sizing: auto;
   font-weight: 100;
   font-style: normal;
@@ -437,7 +472,7 @@ a:hover {
 }
 
 .ibm-plex-sans-light-italic {
-  font-family: "ibm-plex-sans", times;
+  font-family: "IBM Plex Sans", sans-serif;
   font-optical-sizing: auto;
   font-weight: 300;
   font-style: italic;
@@ -446,7 +481,7 @@ a:hover {
 }
 
 .ibm-plex-sans-extralight-italic {
-  font-family: "ibm-plex-sans", times;
+  font-family: "IBM Plex Sans", sans-serif;
   font-optical-sizing: auto;
   font-weight: 200;
   font-style: italic;

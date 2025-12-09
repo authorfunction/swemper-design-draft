@@ -126,8 +126,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!/^\d/.test(header.textContent.trim())) {
       const prefix = `0${index + 1} `;
 
-      // Prepend the prefix to the element's existing text content
-      header.textContent = prefix + header.textContent;
+      // Prepend the prefix to the element's existing content
+      //header.textContent = prefix + header.textContent;
+      header.insertAdjacentText('afterbegin', prefix);
     }
   });
 
