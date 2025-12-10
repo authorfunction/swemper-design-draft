@@ -163,106 +163,19 @@ let swapTimer = null; // This will hold the ID of your setInterval
 let isPaused = false; // This tracks the pause state
 
 // --- IMAGE LIST DEFINITION ---
-const imageList = [
-  // unset variables fill use default values
-  //{ id: 'img7', src: 'https://i.ibb.co/nNVq23mx/La-kartidningen-1967-0211.jpg', dither: 'bayer', threshold: 64, nnngradientParams: { topStop3: 0.35, topStop4: 0.85 } },
+// --- IMAGE LIST DEFINITION ---
+let imageList = [];
 
-  {
-    id: "lung",
-    src: "./cover-images/helsovannen-1890-nr003-0001-stor.jpg",
-    dither: "atkinson",
-    ditherColor: { r: 0, g: 40, b: 40 },
-  },
-  {
-    id: "baby",
-    src: "./cover-images/jordemodern-1958-vol001-0465-stor.jpg",
-    //gradientParams: { topStop1: 0.1, topStop2: 0.25 }
-    ditherColor: { r: 0, g: 40, b: 0 },
-  },
-  {
-    id: "hand_1",
-    src: "./cover-images/svenska-lakartidningen-1956-vol003-0030-1-hires.jpg",
-  }, // Will default to atkinson
-  {
-    id: "hand_2",
-    src: "./cover-images/svenska-lakartidningen-1956-vol003-0030-2-hires.jpg",
-    dither: "atkinson",
-    ditherColor: { r: 0, g: 0, b: 40 },
-  },
-  {
-    id: "old_new_media",
-    src: "./cover-images/svenska-lakartidningen-1975-3920-stor.jpg",
-    dither: "bayer",
-    gradientParams: { topStop1: 0, topStop2: 0, enabled: true },
-    useOriginalColor: true,
-    dither: "atkinson",
-  }, //https://i.ibb.co/nNVq23mx/La-kartidningen-1967-0211.jpg //https://i.ibb.co/7JBQQgwx/La-kartidningen-1967-0211-cropped-2.webp
-  //{
-  //  id: 'strepsils_cropped', src: './cover-images/La-kartidningen-1967-0211-cropped.jpg',
-  //  gradientParams: { topStop3: 0.35, topStop4: 0.85 }
-  //},
-  //https://i.ibb.co/XxBdQ4Xx/La-kartidningen-1967-0333.jpg
-  {
-    id: "touch_cropped",
-    src: "./cover-images/La-kartidningen-1967-0333.jpg",
-    gradientParams: { topStop1: 0, topStop2: 0, enabled: true },
-    ditherColor: null,
-    gradientParams: {
-      enabled: true,
-      topStop1: 0.01,
-      topStop2: 0.20,
-      topStop3: 0.85,
-      topStop4: 1.0,
-    },
-  },
-  //{id: 'epidemiologi', src: 'https://i.ibb.co/dsXgmkCX/mtf-motpol-1980-vol001-0121.jpg'}, //https://i.ibb.co/dsXgmkCX/mtf-motpol-1980-vol001-0121.jpg
-  {
-    id: "gymnastik",
-    src: "./cover-images/helsovannen_1924_vol001_0062.png",
-    gradientParams: { topStop1: 0, topStop2: 0, enabled: true },
-    ditherColor: { r: 200 / 2, g: 0, b: 200 / 2 }, //light pink
-    //useOriginalColor: true,
-  },
-  {
-    id: "elanders",
-    src: "./cover-images/sjukskotersketidningen_1914_vol001_0347.png",
-    //gradientParams: { topStop1: 0, topStop2: 0, enabled: true },
-    ditherColor: { r: 0, g: 0, b: 200 / 2 }, //light blue
-    //useOriginalColor: true,
-    gradientParams: {
-      enabled: true,
-      topStop1: 0.05,
-      topStop2: 0.35,
-      topStop3: 0.65,
-      topStop4: 1.0,
-    },
-  },
-  {
-    id: "halspastiller",
-    src: "./cover-images/mtf_motpol_1961_vol001_0133.png",
-    ditherColor: { r: 0, g: 200 / 2, b: 200 / 2 }, //light yellow
-  },
-  {
-    id: "hygiea_000",
-    src: "./cover-images/hygiea_1926_vol001_0224.png",
-    ditherColor: { r: 200 / 2, g: 200 / 2, b: 0 }, //light green
-  },
-  {
-    id: "hygiea_fig",
-    src: "./cover-images/hygiea_1920_vol001_0531.png",
-    useOriginalColor: true,
-  },
-  {
-    id: "graphs",
-    src: "./cover-images/hygiea_1920_vol001_0049.png",
-    ditherColor: { r: 0 / 2, g: 255 / 2, b: 100 }, //mintish green
-  },
-  {
-    id: "brain",
-    src: "./cover-images/hygiea_1921_vol001_0104.png",
-    ditherColor: { r: 255 / 2, g: 0 / 2, b: 0 }, //red
-  },
-];
+async function loadImages() {
+  try {
+    const response = await fetch('./images.yaml');
+    const text = await response.text();
+    imageList = jsyaml.load(text);
+    console.log('Images loaded:', imageList);
+  } catch (e) {
+    console.error('Failed to load images.yaml', e);
+  }
+}
 
 //########### DOM HOOKS/EVENTLISTENERS
 //###########
@@ -302,10 +215,13 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   const canvas = document.getElementById("dither-background");
   const ctx = canvas.getContext("2d");
   const mainElement = document.getElementById("main");
+
+  await loadImages();
+
 
   // Shuffle the list one time on load.
   shuffleArray(imageList);
