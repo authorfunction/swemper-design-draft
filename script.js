@@ -1,17 +1,162 @@
 /*// --- START of canvas-dither.min.js content (pasted here) ---
 Github: https://github.com/NielsLeenheer/CanvasDither
 Unminiified-code: https://github.com/NielsLeenheer/CanvasDither/blob/master/src/canvas-dither.js
-This code has been inlined here, because of issues with sourcing it rmeotely when using CodePen 
+This code has been inlined here, because of issues with sourcing it rmeotely when using CodePen
 to develop the concept/Design. Should be changed in production.
 */
-!function (t) { if ("object" == typeof exports && "undefined" != typeof module) module.exports = t(); else if ("function" == typeof define && define.amd) define([], t); else { ("undefined" != typeof window ? window : "undefined" != typeof global ? global : "undefined" != typeof self ? self : this).CanvasDither = t() } }(function () { return function () { return function t(e, a, n) { function r(d, f) { if (!a[d]) { if (!e[d]) { var i = "function" == typeof require && require; if (!f && i) return i(d, !0); if (o) return o(d, !0); var l = new Error("Cannot find module '" + d + "'"); throw l.code = "MODULE_NOT_FOUND", l } var u = a[d] = { exports: {} }; e[d][0].call(u.exports, function (t) { return r(e[d][1][t] || t) }, u, u.exports, t, e, a, n) } return a[d].exports } for (var o = "function" == typeof require && require, d = 0; d < n.length; d++)r(n[d]); return r } }()({ 1: [function (t, e, a) { e.exports = new class { grayscale(t) { for (let e = 0; e < t.data.length; e += 4) { const a = .299 * t.data[e] + .587 * t.data[e + 1] + .114 * t.data[e + 2]; t.data.fill(a, e, e + 3) } return t } threshold(t, e) { for (let a = 0; a < t.data.length; a += 4) { const n = .299 * t.data[a] + .587 * t.data[a + 1] + .114 * t.data[a + 2] < e ? 0 : 255; t.data.fill(n, a, a + 3) } return t } bayer(t, e) { const a = [[15, 135, 45, 165], [195, 75, 225, 105], [60, 180, 30, 150], [240, 120, 210, 90]]; for (let n = 0; n < t.data.length; n += 4) { const r = .299 * t.data[n] + .587 * t.data[n + 1] + .114 * t.data[n + 2], o = n / 4 % t.width, d = Math.floor(n / 4 / t.width), f = Math.floor((r + a[o % 4][d % 4]) / 2) < e ? 0 : 255; t.data.fill(f, n, n + 3) } return t } floydsteinberg(t) { const e = t.width, a = new Uint8ClampedArray(t.width * t.height); for (let e = 0, n = 0; n < t.data.length; e++, n += 4)a[e] = .299 * t.data[n] + .587 * t.data[n + 1] + .114 * t.data[n + 2]; for (let n = 0, r = 0; r < t.data.length; n++, r += 4) { const o = a[n] < 129 ? 0 : 255, d = Math.floor((a[n] - o) / 16); t.data.fill(o, r, r + 3), a[n + 1] += 7 * d, a[n + e - 1] += 3 * d, a[n + e] += 5 * d, a[n + e + 1] += 1 * d } return t } atkinson(t) { const e = t.width, a = new Uint8ClampedArray(t.width * t.height); for (let e = 0, n = 0; n < t.data.length; e++, n += 4)a[e] = .299 * t.data[n] + .587 * t.data[n + 1] + .114 * t.data[n + 2]; for (let n = 0, r = 0; r < t.data.length; n++, r += 4) { const o = a[n] < 129 ? 0 : 255, d = Math.floor((a[n] - o) / 8); t.data.fill(o, r, r + 3), a[n + 1] += d, a[n + 2] += d, a[n + e - 1] += d, a[n + e] += d, a[n + e + 1] += d, a[n + 2 * e] += d } return t } } }, {}] }, {}, [1])(1) });
+!(function (t) {
+  if ("object" == typeof exports && "undefined" != typeof module)
+    module.exports = t();
+  else if ("function" == typeof define && define.amd) define([], t);
+  else {
+    ("undefined" != typeof window
+      ? window
+      : "undefined" != typeof global
+        ? global
+        : "undefined" != typeof self
+          ? self
+          : this
+    ).CanvasDither = t();
+  }
+})(function () {
+  return (function () {
+    return function t(e, a, n) {
+      function r(d, f) {
+        if (!a[d]) {
+          if (!e[d]) {
+            var i = "function" == typeof require && require;
+            if (!f && i) return i(d, !0);
+            if (o) return o(d, !0);
+            var l = new Error("Cannot find module '" + d + "'");
+            throw ((l.code = "MODULE_NOT_FOUND"), l);
+          }
+          var u = (a[d] = { exports: {} });
+          e[d][0].call(
+            u.exports,
+            function (t) {
+              return r(e[d][1][t] || t);
+            },
+            u,
+            u.exports,
+            t,
+            e,
+            a,
+            n,
+          );
+        }
+        return a[d].exports;
+      }
+      for (
+        var o = "function" == typeof require && require, d = 0;
+        d < n.length;
+        d++
+      )
+        r(n[d]);
+      return r;
+    };
+  })()(
+    {
+      1: [
+        function (t, e, a) {
+          e.exports = new (class {
+            grayscale(t) {
+              for (let e = 0; e < t.data.length; e += 4) {
+                const a =
+                  0.299 * t.data[e] +
+                  0.587 * t.data[e + 1] +
+                  0.114 * t.data[e + 2];
+                t.data.fill(a, e, e + 3);
+              }
+              return t;
+            }
+            threshold(t, e) {
+              for (let a = 0; a < t.data.length; a += 4) {
+                const n =
+                  0.299 * t.data[a] +
+                    0.587 * t.data[a + 1] +
+                    0.114 * t.data[a + 2] <
+                  e
+                    ? 0
+                    : 255;
+                t.data.fill(n, a, a + 3);
+              }
+              return t;
+            }
+            bayer(t, e) {
+              const a = [
+                [15, 135, 45, 165],
+                [195, 75, 225, 105],
+                [60, 180, 30, 150],
+                [240, 120, 210, 90],
+              ];
+              for (let n = 0; n < t.data.length; n += 4) {
+                const r =
+                    0.299 * t.data[n] +
+                    0.587 * t.data[n + 1] +
+                    0.114 * t.data[n + 2],
+                  o = (n / 4) % t.width,
+                  d = Math.floor(n / 4 / t.width),
+                  f = Math.floor((r + a[o % 4][d % 4]) / 2) < e ? 0 : 255;
+                t.data.fill(f, n, n + 3);
+              }
+              return t;
+            }
+            floydsteinberg(t) {
+              const e = t.width,
+                a = new Uint8ClampedArray(t.width * t.height);
+              for (let e = 0, n = 0; n < t.data.length; e++, n += 4)
+                a[e] =
+                  0.299 * t.data[n] +
+                  0.587 * t.data[n + 1] +
+                  0.114 * t.data[n + 2];
+              for (let n = 0, r = 0; r < t.data.length; n++, r += 4) {
+                const o = a[n] < 129 ? 0 : 255,
+                  d = Math.floor((a[n] - o) / 16);
+                (t.data.fill(o, r, r + 3),
+                  (a[n + 1] += 7 * d),
+                  (a[n + e - 1] += 3 * d),
+                  (a[n + e] += 5 * d),
+                  (a[n + e + 1] += 1 * d));
+              }
+              return t;
+            }
+            atkinson(t) {
+              const e = t.width,
+                a = new Uint8ClampedArray(t.width * t.height);
+              for (let e = 0, n = 0; n < t.data.length; e++, n += 4)
+                a[e] =
+                  0.299 * t.data[n] +
+                  0.587 * t.data[n + 1] +
+                  0.114 * t.data[n + 2];
+              for (let n = 0, r = 0; r < t.data.length; n++, r += 4) {
+                const o = a[n] < 129 ? 0 : 255,
+                  d = Math.floor((a[n] - o) / 8);
+                (t.data.fill(o, r, r + 3),
+                  (a[n + 1] += d),
+                  (a[n + 2] += d),
+                  (a[n + e - 1] += d),
+                  (a[n + e] += d),
+                  (a[n + e + 1] += d),
+                  (a[n + 2 * e] += d));
+              }
+              return t;
+            }
+          })();
+        },
+        {},
+      ],
+    },
+    {},
+    [1],
+  )(1);
+});
 // --- END of canvas-dither.min.js content ---*/
 
 // --- SET GLOBAL VARIABLES
 let currentImageIndex = -1; // initialise image index
 const img = new Image();
 //img.crossOrigin = "Anonymous";
-const DEFAULT_DITHER_COLOR = { r: 40, g: 0, b: 0 };//OR null for black; //values are good ar around 40-80.
+const DEFAULT_DITHER_COLOR = { r: 40, g: 0, b: 0 }; //OR null for black; //values are good ar around 40-80.
 // ---------------------
 
 let swapTimer = null; // This will hold the ID of your setInterval
@@ -20,28 +165,37 @@ let isPaused = false; // This tracks the pause state
 // --- IMAGE LIST DEFINITION ---
 const imageList = [
   // unset variables fill use default values
-  //{ id: 'img7', src: 'https://i.ibb.co/nNVq23mx/La-kartidningen-1967-0211.jpg', dither: 'bayer', threshold: 64, gradientParams: { topStop3: 0.35, topStop4: 0.85 } },
+  //{ id: 'img7', src: 'https://i.ibb.co/nNVq23mx/La-kartidningen-1967-0211.jpg', dither: 'bayer', threshold: 64, nnngradientParams: { topStop3: 0.35, topStop4: 0.85 } },
 
   {
-    id: 'lung', src: './cover-images/helsovannen-1890-nr003-0001-stor.jpg', dither: 'atkinson',
+    id: "lung",
+    src: "./cover-images/helsovannen-1890-nr003-0001-stor.jpg",
+    dither: "atkinson",
     ditherColor: { r: 0, g: 40, b: 40 },
   },
   {
-    id: 'baby', src: './cover-images/jordemodern-1958-vol001-0465-stor.jpg',
+    id: "baby",
+    src: "./cover-images/jordemodern-1958-vol001-0465-stor.jpg",
     //gradientParams: { topStop1: 0.1, topStop2: 0.25 }
     ditherColor: { r: 0, g: 40, b: 0 },
   },
-  { id: 'hand_1', src: './cover-images/svenska-lakartidningen-1956-vol003-0030-1-hires.jpg' }, // Will default to atkinson
   {
-    id: 'hand_2', src: './cover-images/svenska-lakartidningen-1956-vol003-0030-2-hires.jpg',
-    dither: 'atkinson',
+    id: "hand_1",
+    src: "./cover-images/svenska-lakartidningen-1956-vol003-0030-1-hires.jpg",
+  }, // Will default to atkinson
+  {
+    id: "hand_2",
+    src: "./cover-images/svenska-lakartidningen-1956-vol003-0030-2-hires.jpg",
+    dither: "atkinson",
     ditherColor: { r: 0, g: 0, b: 40 },
   },
   {
-    id: 'old_new_media', src: './cover-images/svenska-lakartidningen-1975-3920-stor.jpg', dither: 'bayer',
+    id: "old_new_media",
+    src: "./cover-images/svenska-lakartidningen-1975-3920-stor.jpg",
+    dither: "bayer",
     gradientParams: { topStop1: 0, topStop2: 0, enabled: true },
     useOriginalColor: true,
-    dither: 'atkinson',
+    dither: "atkinson",
   }, //https://i.ibb.co/nNVq23mx/La-kartidningen-1967-0211.jpg //https://i.ibb.co/7JBQQgwx/La-kartidningen-1967-0211-cropped-2.webp
   //{
   //  id: 'strepsils_cropped', src: './cover-images/La-kartidningen-1967-0211-cropped.jpg',
@@ -49,48 +203,69 @@ const imageList = [
   //},
   //https://i.ibb.co/XxBdQ4Xx/La-kartidningen-1967-0333.jpg
   {
-    id: 'touch_cropped', src: './cover-images/La-kartidningen-1967-0333.jpg',
+    id: "touch_cropped",
+    src: "./cover-images/La-kartidningen-1967-0333.jpg",
     gradientParams: { topStop1: 0, topStop2: 0, enabled: true },
     ditherColor: null,
   },
   //{id: 'epidemiologi', src: 'https://i.ibb.co/dsXgmkCX/mtf-motpol-1980-vol001-0121.jpg'}, //https://i.ibb.co/dsXgmkCX/mtf-motpol-1980-vol001-0121.jpg
   {
-    id: 'gymnastik', src: './cover-images/helsovannen_1924_vol001_0062.png',
+    id: "gymnastik",
+    src: "./cover-images/helsovannen_1924_vol001_0062.png",
     gradientParams: { topStop1: 0, topStop2: 0, enabled: true },
     ditherColor: { r: 200 / 2, g: 0, b: 200 / 2 }, //light pink
     //useOriginalColor: true,
   },
   {
-    id: 'elanders', src: './cover-images/sjukskotersketidningen_1914_vol001_0347.png',
+    id: "elanders",
+    src: "./cover-images/sjukskotersketidningen_1914_vol001_0347.png",
     //gradientParams: { topStop1: 0, topStop2: 0, enabled: true },
     ditherColor: { r: 0, g: 0, b: 200 / 2 }, //light blue
     //useOriginalColor: true,
+    gradientParams: {
+      enabled: true,
+      topStop1: 0.05,
+      topStop2: 0.35,
+      topStop3: 0.65,
+      topStop4: 1.0,
+    },
   },
   {
-    id: 'halspastiller', src: './cover-images/mtf_motpol_1961_vol001_0133.png',
-    ditherColor: { r: 0, g: 200 / 2, b: 200 / 2 }, //light yellow 
+    id: "halspastiller",
+    src: "./cover-images/mtf_motpol_1961_vol001_0133.png",
+    ditherColor: { r: 0, g: 200 / 2, b: 200 / 2 }, //light yellow
   },
   {
-    id: 'hygiea_000', src: './cover-images/hygiea_1926_vol001_0224.png',
+    id: "hygiea_000",
+    src: "./cover-images/hygiea_1926_vol001_0224.png",
     ditherColor: { r: 200 / 2, g: 200 / 2, b: 0 }, //light green
   },
   {
-    id: 'hygiea_fig', src: './cover-images/hygiea_1920_vol001_0531.png',
+    id: "hygiea_fig",
+    src: "./cover-images/hygiea_1920_vol001_0531.png",
     useOriginalColor: true,
+  },
+  {
+    id: "graphs",
+    src: "./cover-images/hygiea_1920_vol001_0049.png",
+    ditherColor: { r: 0 / 2, g: 255 / 2, b: 100 }, //mintish green
+  },
+  {
+    id: "brain",
+    src: "./cover-images/hygiea_1921_vol001_0104.png",
+    ditherColor: { r: 255 / 2, g: 0 / 2, b: 0 }, //red
   },
 ];
 
-//########### DOM HOOKS/EVENTLISTENERS 
+//########### DOM HOOKS/EVENTLISTENERS
 //###########
 // Listen for key presses
-document.addEventListener('keydown', (event) => {
-
-  if (event.key === ' ' || event.key === 'Spacebar') {
+document.addEventListener("keydown", (event) => {
+  if (event.key === " " || event.key === "Spacebar") {
     // --- PAUSE/RESUME ---
     event.preventDefault(); // Stop spacebar from scrolling
     togglePause();
-  }
-  else if (event.key === 'ArrowRight') {
+  } else if (event.key === "ArrowRight") {
     // --- NEXT IMAGE ---
     event.preventDefault(); // Stop arrow from scrolling
     console.log("Next image");
@@ -101,8 +276,7 @@ document.addEventListener('keydown', (event) => {
       clearInterval(swapTimer);
       swapTimer = setInterval(swapImage, 5000);
     }
-  }
-  else if (event.key === 'ArrowLeft') {
+  } else if (event.key === "ArrowLeft") {
     // --- PREVIOUS IMAGE ---
     event.preventDefault(); // Stop arrow from scrolling
     console.log("Previous image");
@@ -113,20 +287,18 @@ document.addEventListener('keydown', (event) => {
       clearInterval(swapTimer);
       swapTimer = setInterval(swapImage, 5000);
     }
-  }
-  else if (event.key === 'b' || event.key === 'B') {
+  } else if (event.key === "b" || event.key === "B") {
     // --- TOGGLE BLEND MODE ---
     console.log("Toggle blend mode");
-    document.getElementById('menu').classList.toggle('bg-blend');
-    document.getElementById('about-text').classList.toggle('bg-blend');
+    document.getElementById("menu").classList.toggle("bg-blend");
+    document.getElementById("about-text").classList.toggle("bg-blend");
   }
-
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-  const canvas = document.getElementById('dither-background');
-  const ctx = canvas.getContext('2d');
-  const mainElement = document.getElementById('main');
+document.addEventListener("DOMContentLoaded", () => {
+  const canvas = document.getElementById("dither-background");
+  const ctx = canvas.getContext("2d");
+  const mainElement = document.getElementById("main");
 
   // Shuffle the list one time on load.
   shuffleArray(imageList);
@@ -144,7 +316,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.fonts.ready.then(() => {
     fillAllBinarySpans();
   });
-  window.addEventListener('resize', fillAllBinarySpans);
+  window.addEventListener("resize", fillAllBinarySpans);
 
   // Run Code for Indexing numbered-header ---
   // Define the class name you want to target
@@ -162,7 +334,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Prepend the prefix to the element's existing content
       //header.textContent = prefix + header.textContent;
-      header.insertAdjacentText('afterbegin', prefix);
+      header.insertAdjacentText("afterbegin", prefix);
     }
   });
 
@@ -175,19 +347,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const customThreshold = parseInt(threshold, 10);
 
     switch (methodName) {
-      case 'atkinson':
+      case "atkinson":
         return CanvasDither.atkinson(imageData);
 
-      case 'bayer':
+      case "bayer":
         // Use custom threshold if valid, otherwise default to 96
         const bayerValue = !isNaN(customThreshold) ? customThreshold : 96;
         console.log(`Using bayer threshold: ${bayerValue}`);
         return CanvasDither.bayer(imageData, bayerValue);
 
-      case 'floydsteinberg':
+      case "floydsteinberg":
         return CanvasDither.floydsteinberg(imageData);
 
-      case 'threshold':
+      case "threshold":
         // Use custom threshold if valid, otherwise default to 128
         const thresholdValue = !isNaN(customThreshold) ? customThreshold : 128;
         console.log(`Using threshold: ${thresholdValue}`);
@@ -195,27 +367,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
       default:
         // Default to atkinson if the name is unknown
-        console.warn(`Unknown dither method: '${methodName}'. Defaulting to atkinson.`);
+        console.warn(
+          `Unknown dither method: '${methodName}'. Defaulting to atkinson.`,
+        );
         return CanvasDither.atkinson(imageData);
     }
   }
 
   /**
- * Draws a gradient mask onto the canvas to mimic the original CSS mask-image.
- * This fades the top and bottom of the canvas to the background color.
- * @param {CanvasRenderingContext2D} ctx - The 2D context to draw on.
- * @param {number} width - The width of the canvas.
- * @param {number} height - The height of the canvas.
- */
+   * Draws a gradient mask onto the canvas to mimic the original CSS mask-image.
+   * This fades the top and bottom of the canvas to the background color.
+   * @param {CanvasRenderingContext2D} ctx - The 2D context to draw on.
+   * @param {number} width - The width of the canvas.
+   * @param {number} height - The height of the canvas.
+   */
   function drawGradientMask(ctx, width, height, options = {}) {
     // 1. Define the background color (from your style.css)
-    const bgColor = '#f5f4f2';
+    const bgColor = "#f5f4f2";
     const defaults = {
       enabled: true,
       topStop1: 0.02,
       topStop2: 0.15,
       topStop3: 0.65,
-      topStop4: 1.0
+      topStop4: 1.0,
     };
     const params = { ...defaults, ...options };
 
@@ -226,19 +400,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     console.log("enabled applyting gradient");
     // 2. Create a linear gradient matching your CSS mask's logic
-    // We fade from the background color (CSS 'transparent') 
+    // We fade from the background color (CSS 'transparent')
     // to fully transparent (CSS 'black') and back.
     let gradient = ctx.createLinearGradient(0, 0, 0, height);
 
     gradient.addColorStop(params.topStop1, bgColor); // transparent 2% -> solid bg
-    gradient.addColorStop(params.topStop2, 'rgba(245, 244, 242, 0)'); // black 15% -> transparent
-    gradient.addColorStop(params.topStop3, 'rgba(245, 244, 242, 0)'); // black 65% -> transparent
+    gradient.addColorStop(params.topStop2, "rgba(245, 244, 242, 0)"); // black 15% -> transparent
+    gradient.addColorStop(params.topStop3, "rgba(245, 244, 242, 0)"); // black 65% -> transparent
     gradient.addColorStop(params.topStop4, bgColor); // transparent 100% -> solid bg
 
     // 3. Draw the gradient over the entire image
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, width, height);
-
   }
 
   function render() {
@@ -267,7 +440,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- 1. DRAW THE BASE IMAGE
-    ctx.drawImage(img, sx, sy, sWidth, sHeight, 0, 0, containerWidth, containerHeight);
+    ctx.drawImage(
+      img,
+      sx,
+      sy,
+      sWidth,
+      sHeight,
+      0,
+      0,
+      containerWidth,
+      containerHeight,
+    );
 
     // --- ADD THIS LINE (Start timer) ---
     const startTime = performance.now();
@@ -284,7 +467,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const originalData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
       // --- 1. APPLY THE DITHER DYNAMICALLY ---
-      const ditherMethod = img.dataset.dither || 'atkinson';
+      const ditherMethod = img.dataset.dither || "atkinson";
       const threshold = img.dataset.threshold; // Will be undefined if not set
       let ditheredImageData = applyDither(imageData, ditherMethod, threshold);
 
@@ -295,10 +478,10 @@ document.addEventListener('DOMContentLoaded', () => {
       //const finalDitherColor = specificColor || DEFAULT_DITHER_COLOR;
       // Decide which color to use:
       // We check for 'undefined' because 'null' is a valid value (for black)
-      const colorRgb = (specificColor !== undefined) ? specificColor : DEFAULT_DITHER_COLOR;
+      const colorRgb =
+        specificColor !== undefined ? specificColor : DEFAULT_DITHER_COLOR;
       //DEBUG HARD CODE RED
       //const colorRgb = {r: 255, g:0, b:0};
-
 
       // --- 4. MODIFY PIXEL DATA (Your new method) ---
       let data = ditheredImageData.data;
@@ -336,24 +519,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // --- ADD THESE 2 LINES (End timer and log) ---
       const endTime = performance.now();
-      console.log(`Image calculation (gradient, dithering, colorization) took: ${endTime - startTime} ms`)
-
+      console.log(
+        `Image calculation (gradient, dithering, colorization) took: ${endTime - startTime} ms`,
+      );
     } catch (e) {
-      console.error("Dithering failed! Is the 'CanvasDither' object defined?", e);
+      console.error(
+        "Dithering failed! Is the 'CanvasDither' object defined?",
+        e,
+      );
     }
   }
 
   /*// --- Tab Interface Logic UNUSED ON COVER PAGE ---
   // Get all tab link buttons
   const tabLinks = document.querySelectorAll('.tab-link');
-  
+
   // Get all tab content panels
   const tabPanels = document.querySelectorAll('.tab-panel');
 
   // Add a click event listener to each tab link
   tabLinks.forEach(function(link) {
       link.addEventListener('click', function() {
-          
+
           // Get the target tab panel ID from the 'data-tab' attribute
           const tabId = link.getAttribute('data-tab');
 
@@ -372,7 +559,7 @@ document.addEventListener('DOMContentLoaded', () => {
           // --- Activate the clicked tab and its panel ---
           // Add 'active' class to the clicked tab link
           link.classList.add('active');
-          
+
           // Add 'active' class to the corresponding tab panel (showing it)
           document.getElementById(tabId).classList.add('active');
           // -----------------------------------------------
@@ -392,14 +579,14 @@ function loadCurrentMedia() {
   const imageObject = imageList[currentImageIndex];
 
   // 2. Load all data onto the img element
-  const ditherMethod = imageObject.dither || 'atkinson';
+  const ditherMethod = imageObject.dither || "atkinson";
   // Store the method on the img element so render() can access it
   img.dataset.dither = ditherMethod;
   // Store the threshold (will be undefined if it doesn't exist)
   img.dataset.threshold = imageObject.threshold;
   // Store the gradient params (will be undefined if not set)
   img.gradientParams = imageObject.gradientParams;
-  // Store the dither color 
+  // Store the dither color
   img.ditherColor = imageObject.ditherColor;
   // Store the original color flag
   img.useOriginalColor = imageObject.useOriginalColor;
@@ -467,9 +654,9 @@ function navigateBackward() {
 }
 
 function fillAllBinarySpans() {
-  const fillers = document.querySelectorAll('.binary-filler');
+  const fillers = document.querySelectorAll(".binary-filler");
 
-  fillers.forEach(filler => {
+  fillers.forEach((filler) => {
     // 1. Identify the STYLE container (parents are usually good for font styles)
     const styleContainer = filler.parentElement;
     if (!styleContainer) return;
@@ -480,7 +667,7 @@ function fillAllBinarySpans() {
     let layoutContainer = styleContainer;
     while (layoutContainer && layoutContainer.parentElement) {
       const display = window.getComputedStyle(layoutContainer).display;
-      if (display === 'inline') {
+      if (display === "inline") {
         layoutContainer = layoutContainer.parentElement;
       } else {
         break;
@@ -489,7 +676,6 @@ function fillAllBinarySpans() {
 
     // Fallback if we somehow didn't find one (shouldn't happen in <body>)
     if (!layoutContainer) layoutContainer = styleContainer;
-
 
     // 3. Get container measurements
     const containerRect = layoutContainer.getBoundingClientRect();
@@ -501,7 +687,8 @@ function fillAllBinarySpans() {
     const containerRightEdge = containerRect.right - paddingRight - borderRight;
 
     // 4. Determine where the "gap" starts
-    let startEdge = containerRect.left + (parseFloat(containerStyle.paddingLeft) || 0);
+    let startEdge =
+      containerRect.left + (parseFloat(containerStyle.paddingLeft) || 0);
 
     // Check previous sibling (Element)
     const prevEl = filler.previousElementSibling;
@@ -518,12 +705,15 @@ function fillAllBinarySpans() {
       styleSource = prevEl;
 
       // Ensure they align nicely
-      prevEl.style.display = 'inline-block';
-      filler.style.display = 'inline-block';
-      prevEl.style.verticalAlign = 'bottom';
-      filler.style.verticalAlign = 'bottom';
-
-    } else if (prevNode && prevNode.nodeType === Node.TEXT_NODE && prevNode.textContent.trim().length > 0) {
+      prevEl.style.display = "inline-block";
+      filler.style.display = "inline-block";
+      prevEl.style.verticalAlign = "bottom";
+      filler.style.verticalAlign = "bottom";
+    } else if (
+      prevNode &&
+      prevNode.nodeType === Node.TEXT_NODE &&
+      prevNode.textContent.trim().length > 0
+    ) {
       // Case B: Previous Text Node
       // We use a range to find exactly where the text ends
       const range = document.createRange();
@@ -535,18 +725,17 @@ function fillAllBinarySpans() {
         startEdge = lastRect.right;
       }
       styleSource = styleContainer;
-      filler.style.display = 'inline-block';
-      filler.style.verticalAlign = 'bottom';
+      filler.style.display = "inline-block";
+      filler.style.verticalAlign = "bottom";
     } else {
       // Case C: No previous content, start from container left (already set)
-      filler.style.display = 'inline-block';
-      filler.style.verticalAlign = 'bottom';
+      filler.style.display = "inline-block";
+      filler.style.verticalAlign = "bottom";
       styleSource = styleContainer;
     }
 
-
     // 4. Calculate Available Width
-    const remainingWidth = (containerRightEdge - startEdge) - 5;
+    const remainingWidth = containerRightEdge - startEdge - 5;
 
     // ---
     // STYLING & FILLING
@@ -576,7 +765,7 @@ function fillAllBinarySpans() {
     // ---
     // LEAD CHAR LOGIC
     // ---
-    const leadChar = '0';
+    const leadChar = "0";
     const bufferChars = 0;
 
     if (charWidth > 0 && remainingWidth > 0) {
@@ -588,13 +777,13 @@ function fillAllBinarySpans() {
         const binaryString = generateBinary(binaryCharCount);
         filler.textContent = leadChar + binaryString;
 
-        filler.style.whiteSpace = 'nowrap';
-        filler.style.overflow = 'hidden';
+        filler.style.whiteSpace = "nowrap";
+        filler.style.overflow = "hidden";
       } else {
-        filler.textContent = '';
+        filler.textContent = "";
       }
     } else {
-      filler.textContent = '';
+      filler.textContent = "";
     }
   });
 }
@@ -604,7 +793,7 @@ function fillAllBinarySpans() {
  * (This function is unchanged)
  */
 function generateBinary(length) {
-  let binaryString = '';
+  let binaryString = "";
   for (let i = 0; i < length; i++) {
     binaryString += Math.round(Math.random());
   }
@@ -615,17 +804,17 @@ function generateBinary(length) {
  * Calculates the width of a single character ('0') using a style source.
  */
 function getCharWidth(styleSourceElement) {
-  const temp = document.createElement('span');
-  const manual_tweak = 1
-  temp.textContent = '0';
+  const temp = document.createElement("span");
+  const manual_tweak = 1;
+  temp.textContent = "0";
   const style = window.getComputedStyle(styleSourceElement);
   temp.style.fontFamily = style.fontFamily;
   temp.style.fontSize = style.fontSize;
   temp.style.fontWeight = style.fontWeight;
   temp.style.letterSpacing = style.letterSpacing;
   temp.style.lineHeight = style.lineHeight;
-  temp.style.visibility = 'hidden';
-  temp.style.position = 'absolute';
+  temp.style.visibility = "hidden";
+  temp.style.position = "absolute";
   document.body.appendChild(temp);
   const width = temp.offsetWidth;
   document.body.removeChild(temp);
