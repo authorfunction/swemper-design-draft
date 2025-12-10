@@ -75,7 +75,7 @@ to develop the concept/Design. Should be changed in production.
                   0.299 * t.data[a] +
                     0.587 * t.data[a + 1] +
                     0.114 * t.data[a + 2] <
-                  e
+                    e
                     ? 0
                     : 255;
                 t.data.fill(n, a, a + 3);
@@ -91,9 +91,9 @@ to develop the concept/Design. Should be changed in production.
               ];
               for (let n = 0; n < t.data.length; n += 4) {
                 const r =
-                    0.299 * t.data[n] +
-                    0.587 * t.data[n + 1] +
-                    0.114 * t.data[n + 2],
+                  0.299 * t.data[n] +
+                  0.587 * t.data[n + 1] +
+                  0.114 * t.data[n + 2],
                   o = (n / 4) % t.width,
                   d = Math.floor(n / 4 / t.width),
                   f = Math.floor((r + a[o % 4][d % 4]) / 2) < e ? 0 : 255;
@@ -207,6 +207,13 @@ const imageList = [
     src: "./cover-images/La-kartidningen-1967-0333.jpg",
     gradientParams: { topStop1: 0, topStop2: 0, enabled: true },
     ditherColor: null,
+    gradientParams: {
+      enabled: true,
+      topStop1: 0.01,
+      topStop2: 0.20,
+      topStop3: 0.85,
+      topStop4: 1.0,
+    },
   },
   //{id: 'epidemiologi', src: 'https://i.ibb.co/dsXgmkCX/mtf-motpol-1980-vol001-0121.jpg'}, //https://i.ibb.co/dsXgmkCX/mtf-motpol-1980-vol001-0121.jpg
   {
