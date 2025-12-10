@@ -40,11 +40,13 @@ const imageList = [
   {
     id: 'old_new_media', src: './cover-images/svenska-lakartidningen-1975-3920-stor.jpg', dither: 'bayer',
     gradientParams: { topStop1: 0, topStop2: 0, enabled: true },
+    useOriginalColor: true,
+    dither: 'atkinson',
   }, //https://i.ibb.co/nNVq23mx/La-kartidningen-1967-0211.jpg //https://i.ibb.co/7JBQQgwx/La-kartidningen-1967-0211-cropped-2.webp
-  {
-    id: 'strepsils_cropped', src: './cover-images/La-kartidningen-1967-0211-cropped.jpg',
-    gradientParams: { topStop3: 0.35, topStop4: 0.85 }
-  },
+  //{
+  //  id: 'strepsils_cropped', src: './cover-images/La-kartidningen-1967-0211-cropped.jpg',
+  //  gradientParams: { topStop3: 0.35, topStop4: 0.85 }
+  //},
   //https://i.ibb.co/XxBdQ4Xx/La-kartidningen-1967-0333.jpg
   {
     id: 'touch_cropped', src: './cover-images/La-kartidningen-1967-0333.jpg',
@@ -52,6 +54,30 @@ const imageList = [
     ditherColor: null,
   },
   //{id: 'epidemiologi', src: 'https://i.ibb.co/dsXgmkCX/mtf-motpol-1980-vol001-0121.jpg'}, //https://i.ibb.co/dsXgmkCX/mtf-motpol-1980-vol001-0121.jpg
+  {
+    id: 'gymnastik', src: './cover-images/helsovannen_1924_vol001_0062.png',
+    gradientParams: { topStop1: 0, topStop2: 0, enabled: true },
+    ditherColor: { r: 200 / 2, g: 0, b: 200 / 2 }, //light pink
+    //useOriginalColor: true,
+  },
+  {
+    id: 'elanders', src: './cover-images/sjukskotersketidningen_1914_vol001_0347.png',
+    //gradientParams: { topStop1: 0, topStop2: 0, enabled: true },
+    ditherColor: { r: 0, g: 0, b: 200 / 2 }, //light blue
+    //useOriginalColor: true,
+  },
+  {
+    id: 'halspastiller', src: './cover-images/mtf_motpol_1961_vol001_0133.png',
+    ditherColor: { r: 0, g: 200 / 2, b: 200 / 2 }, //light yellow 
+  },
+  {
+    id: 'hygiea_000', src: './cover-images/hygiea_1926_vol001_0224.png',
+    ditherColor: { r: 200 / 2, g: 200 / 2, b: 0 }, //light green
+  },
+  {
+    id: 'hygiea_fig', src: './cover-images/hygiea_1920_vol001_0531.png',
+    useOriginalColor: true,
+  },
 ];
 
 //########### DOM HOOKS/EVENTLISTENERS 
@@ -248,6 +274,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     try {
       let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      // Capture original data for color reference
+      const originalData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
       // --- 1. APPLY THE DITHER DYNAMICALLY ---
       const ditherMethod = img.dataset.dither || 'atkinson';
@@ -268,20 +296,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // --- 4. MODIFY PIXEL DATA (Your new method) ---
       let data = ditheredImageData.data;
+      let sourcePixels = originalData.data;
+
       for (let i = 0; i < data.length; i += 4) {
         // In a 1-bit dither, R, G, and B are all the same value.
         const pixelValue = data[i];
         if (pixelValue === 255) {
           // --- Pixel is WHITE: Make transparent
           data[i + 3] = 0;
-        } else if (pixelValue === 0 && colorRgb) {
-          // --- Pixel is BLACK & we have a color: Apply the color
-          data[i] = colorRgb.r; // Set Red
-          data[i + 1] = colorRgb.g; // Set Green
-          data[i + 2] = colorRgb.b; // Set Blue
-          // Alpha (data[i + 3]) is already 255, so we leave it.
+        } else if (pixelValue === 0) {
+          // --- Pixel is BLACK
+          if (img.useOriginalColor) {
+            // --- Strategy 1: Use Original Image Color
+            data[i] = sourcePixels[i];
+            data[i + 1] = sourcePixels[i + 1];
+            data[i + 2] = sourcePixels[i + 2];
+            // Reduce alpha slightly if you want to blend, but full opacity is usually best for dither
+            data[i + 3] = 255;
+          } else if (colorRgb) {
+            // --- Strategy 2: Use Fixed Color
+            data[i] = colorRgb.r; // Set Red
+            data[i + 1] = colorRgb.g; // Set Green
+            data[i + 2] = colorRgb.b; // Set Blue
+          }
         }
-        // If pixel is black and colorRgb is null,
+        // If pixel is black, no original color flag, and colorRgb is null/undefined,
         // it's left unchanged (stays black).
       }
 
@@ -356,6 +395,8 @@ function loadCurrentMedia() {
   img.gradientParams = imageObject.gradientParams;
   // Store the dither color 
   img.ditherColor = imageObject.ditherColor;
+  // Store the original color flag
+  img.useOriginalColor = imageObject.useOriginalColor;
 
   // 3. Set the src to trigger the load/render
   img.src = imageObject.src;
