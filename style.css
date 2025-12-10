@@ -45,7 +45,7 @@ a:hover {
   display: flex;
   flex-direction: column;
   /* Stack items vertically */
-  width: 90%;
+  width: 94%;
   margin: auto;
 }
 
@@ -56,7 +56,7 @@ a:hover {
   width: 100%;
   height: 100%;
   /* Puts the canvas at the very bottom of the #main stack */
-  z-index: 0;
+  ZZZZz-index: 0;
   opacity: 0.5;
   /*
   filter: contrast(1) sepia(1) hue-rotate(
@@ -75,8 +75,8 @@ a:hover {
 #about-text,
 #menu {
   position: relative;
-  z-index: 1;
-  padding-bottom: 1em;
+  ZZZZz-index: 1;
+  padding-bottom: 2em;
 }
 
 #bottom {
@@ -135,7 +135,11 @@ a:hover {
 
 /* .fg-grey {color: grey; opacity: 0.19;} /*0.17*/
 .fg-grey {
-  color: rgba(158, 148, 128, 0.59);
+  color: rgba(158, 148, 128, 0.29);
+}
+
+.x-transparent {
+  opacity: 0.45
 }
 
 /* Spacing & Formatting Helpers */
@@ -195,7 +199,7 @@ a:hover {
 #acronym {
   letter-spacing: -0.4rem;
   line-height: 1.12em;
-  mix-blend-mode: difference;
+  font-size: 7.2em;
 }
 
 #text {
@@ -209,9 +213,9 @@ a:hover {
   width: fit-content;
 }
 
-.menu-option {
+.menu-item {
   margin: 0;
-  font-size: 2.5em;
+  font-size: 2.7em;
   width: fit-content;
 }
 
@@ -227,6 +231,7 @@ a:hover {
 .binary-filler {
   letter-spacing: normal;
   font-feature-settings: "tnum";
+  mix-blend-mode: multiply;
 }
 
 /* --- About Overlay --- */
@@ -243,6 +248,7 @@ a:hover {
   border-radius: 4px;
   /* Optional: softens the box */
   backdrop-filter: blur(3px);
+  flex-grow: 1;
 }
 
 #menu:has(a:hover)~#about-text {
