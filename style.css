@@ -102,7 +102,8 @@ a:hover {
 /* Sizes */
 .large {
     font-size:
-    /*7.9em*/ 7.2em;
+        /*7.9em*/
+        7.2em;
 }
 
 .medium {
@@ -140,10 +141,11 @@ a:hover {
 }
 
 .bg-blend {
-    background-color: rgba(245, 244, 242, 0.75);
+    background-color: rgba(245, 244, 242, 0.5);
+    /*alpha was 0.75*/
     /* Slightly opaque match to main bg */
     /* Optional: softens the box */
-    backdrop-filter: blur(3px);
+    /*backdrop-filter: blur(3px);*/
 }
 
 .rounded-4px {
@@ -252,12 +254,13 @@ a:hover {
     top: 0em;
     visibility: hidden;
     max-width:
-    /*56ch*/ 28em;
+        /*56ch*/
+        28em;
     font-size: 1.1em;
     flex-grow: 1;
 }
 
-#menu:has(a:hover) ~ #about-text {
+#menu:has(a:hover)~#about-text {
     visibility: visible;
 }
 
@@ -273,7 +276,7 @@ a:hover {
     column-gap: 2rem;
 }
 
-.columns > :first-child {
+.columns> :first-child {
     margin-top: 0;
 }
 
@@ -283,7 +286,7 @@ a:hover {
     margin-bottom: 0;
 }
 
-.indented-prose p + p {
+.indented-prose p+p {
     /* 2. Selects every <p> that directly follows another <p>
       (i.e., all paragraphs except the first one) */
     text-indent: 1.5em;

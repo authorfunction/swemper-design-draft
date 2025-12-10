@@ -114,6 +114,12 @@ document.addEventListener('keydown', (event) => {
       swapTimer = setInterval(swapImage, 5000);
     }
   }
+  else if (event.key === 'b' || event.key === 'B') {
+    // --- TOGGLE BLEND MODE ---
+    console.log("Toggle blend mode");
+    document.getElementById('menu').classList.toggle('bg-blend');
+    document.getElementById('about-text').classList.toggle('bg-blend');
+  }
 
 });
 
