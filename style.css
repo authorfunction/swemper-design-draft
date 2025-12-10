@@ -3,69 +3,68 @@
    ========================================= */
 
 body {
-  margin: 0;
-  padding: 0;
-  background-color: #f5f4f2;
-  /* #e3e1de */
-  /* background-color: #ffdd40; */
+    margin: 0;
+    padding: 0;
+    background-color: #f5f4f2;
+    /* #e3e1de */
+    /* background-color: #ffdd40; */
 }
 
 a {
-  color: black;
-  text-decoration: none;
+    color: black;
+    text-decoration: none;
 }
 
 a:hover {
-  color: black;
-  /* text-decoration: underline; */
-  /* text-decoration-color: #88888842; */
-  /* background-color: rgb(238 250 0 / 50%); */
-  background-color: rgb(200 201 177 / 15%);
-  /* background-color: yellow; */
+    color: black;
+    /* text-decoration: underline; */
+    /* text-decoration-color: #88888842; */
+    /* background-color: rgb(238 250 0 / 50%); */
+    background-color: rgb(200 201 177 / 15%);
+    /* background-color: yellow; */
 }
-
 
 /* =========================================
    2. MAIN LAYOUT
    ========================================= */
 
-/* 
+/*
  * The Main Container
  * This holds the background image.
  */
 #main {
-  height: 98vh;
-  /* background-color: #f5f4f2; */
-  padding-bottom: 0.6em;
-  padding-top: 0.3em;
-  /* CRITICAL: This anchors the absolute canvas */
-  position: relative;
-  /* Good practice to prevent any overflow bugs */
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  /* Stack items vertically */
-  width: 94%;
-  margin: auto;
+    height: 98vh;
+    /* background-color: #f5f4f2; */
+    padding-bottom: 0.6em;
+    padding-top: 0.3em;
+    /* CRITICAL: This anchors the absolute canvas */
+    position: relative;
+    /* Good practice to prevent any overflow bugs */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    /* Stack items vertically */
+    width: 94%;
+    margin: auto;
 }
 
 #dither-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  /* Puts the canvas at the very bottom of the #main stack */
-  ZZZZz-index: 0;
-  opacity: 0.5;
-  /*
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Puts the canvas at the very bottom of the #main stack */
+    zzzzz-index: 0;
+    opacity: 0.5;
+    /*
   filter: contrast(1) sepia(1) hue-rotate(
   279deg);
   background-color: red; /* Or #ff0000
   */
 }
 
-/* 
+/*
  * LIFT CONTENT
  * We must give the content a z-index so it sits on top of the canvas.
  */
@@ -74,28 +73,27 @@ a:hover {
 #right,
 #about-text,
 #menu {
-  position: relative;
-  ZZZZz-index: 1;
-  padding-bottom: 2em;
+    position: relative;
+    zzzzz-index: 1;
+    padding-bottom: 2em;
 }
 
 #bottom {
-  margin-top: auto;
+    margin-top: auto;
 }
 
 #left {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  /* Vertically centers the text and button group */
-  margin-bottom: 20px;
-  /* Adds space below, consistent with .button-row */
-  flex-wrap: wrap;
-  /* Allow wrapping on very small screens */
-  gap: 15px;
-  /* Add gap for when it wraps */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Vertically centers the text and button group */
+    margin-bottom: 20px;
+    /* Adds space below, consistent with .button-row */
+    flex-wrap: wrap;
+    /* Allow wrapping on very small screens */
+    gap: 15px;
+    /* Add gap for when it wraps */
 }
-
 
 /* =========================================
    3. TYPOGRAPHY & UTILITIES
@@ -103,87 +101,102 @@ a:hover {
 
 /* Sizes */
 .large {
-  font-size:
-    /*7.9em*/
-    7.2em;
+    font-size:
+    /*7.9em*/ 7.2em;
 }
 
 .medium {
-  font-size: 3em;
+    font-size: 3em;
 }
 
 .medium-small {
-  font-size: 2.5em;
+    font-size: 2.5em;
 }
 
 .small {
-  font-size: 1em;
+    font-size: 1em;
 }
 
 .smaller {
-  font-size: 0.9em;
+    font-size: 0.9em;
 }
 
 /* Colors */
 .bg-black {
-  background-color: black;
+    background-color: black;
 }
 
 .fg-white {
-  color: white;
+    color: white;
 }
 
 /* .fg-grey {color: grey; opacity: 0.19;} /*0.17*/
 .fg-grey {
-  color: rgba(158, 148, 128, 0.29);
+    color: rgba(158, 148, 128, 0.29);
 }
 
 .x-transparent {
-  opacity: 0.45
+    opacity: 0.45;
+}
+
+.bg-blend {
+    background-color: rgba(245, 244, 242, 0.75);
+    /* Slightly opaque match to main bg */
+    /* Optional: softens the box */
+    backdrop-filter: blur(3px);
+}
+
+.rounded-4px {
+    border-radius: 4px;
 }
 
 /* Spacing & Formatting Helpers */
 .dense-lines {
-  line-height: 2em;
+    line-height: 2em;
 }
 
 .slashed {
-  font-variant-numeric: slashed-zero;
+    font-variant-numeric: slashed-zero;
 }
 
 .condensed-word-space {
-  word-spacing: -0.3em;
+    word-spacing: -0.3em;
 }
 
 .arrow-icon {
-  position: relative;
-  /* Adjust this value to move it further down or up */
-  top: 0.05em;
-  left: 0.05em;
+    display: inline-block;
+    position: relative;
+    /* Adjust this value to move it further down or up */
+    top: 0.05em;
+    left: 0.05em;
+    /* line-height hack to adjust borders */
+    line-height: 0.8;
+    margin-right: 0.2em;
+    border-style: dashed;
+    border-color: black;
 }
 
 /* Hyphenation & Breaking */
 .hyphenate-none {
-  hyphens: none;
+    hyphens: none;
 }
 
 .hyphenate {
-  hyphens: auto;
-  -webkit-hyphenate-limit-before: 3;
-  -webkit-hyphenate-limit-after: 3;
-  /* 2. Standard property (less supported, but good for future-proofing) */
-  hyphenate-limit-chars: 6 3 3;
-  /* min word length, min chars before, min chars after */
+    hyphens: auto;
+    -webkit-hyphenate-limit-before: 3;
+    -webkit-hyphenate-limit-after: 3;
+    /* 2. Standard property (less supported, but good for future-proofing) */
+    hyphenate-limit-chars: 6 3 3;
+    /* min word length, min chars before, min chars after */
 }
 
 .break-links {
-  overflow-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .break-word-aggressive {
-  word-break: break-all;
+    word-break: break-all;
 }
-
 
 /* =========================================
    4. COMPONENTS
@@ -191,104 +204,96 @@ a:hover {
 
 /* --- SWEMPER Header --- */
 #swemper {
-  /*background-color: #5d5d4a0d;*/
-  padding-top: 0px;
-  margin-top: 0px;
+    /*background-color: #5d5d4a0d;*/
+    padding-top: 0px;
+    margin-top: 0px;
 }
 
 #acronym {
-  letter-spacing: -0.4rem;
-  line-height: 1.12em;
-  font-size: 7.2em;
+    letter-spacing: -0.4rem;
+    line-height: 1.12em;
+    font-size: 7.2em;
 }
 
 #text {
-  display: block;
-  line-height: 1.1em;
+    display: block;
+    line-height: 1.1em;
 }
 
 /* --- Menu --- */
 #menu a {
-  display: block;
-  width: fit-content;
+    display: block;
+    width: fit-content;
 }
 
 .menu-item {
-  margin: 0;
-  font-size: 2.7em;
-  width: fit-content;
+    margin: 0;
+    font-size: 2.7em;
+    width: fit-content;
 }
 
 .menu-item-wrapper {
-  width: 100%;
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: baseline;
-  white-space: nowrap;
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: baseline;
+    white-space: nowrap;
 }
 
 /* --- Binary Filler --- */
 .binary-filler {
-  letter-spacing: normal;
-  font-feature-settings: "tnum";
-  mix-blend-mode: multiply;
+    letter-spacing: normal;
+    font-feature-settings: "tnum";
+    mix-blend-mode: multiply;
 }
 
 /* --- About Overlay --- */
 #about-text {
-  top: 0.1em;
-  visibility: hidden;
-  max-width:
-    /*56ch*/
-    40ch;
-  font-size: 1.1em;
-  background-color: rgba(245, 244, 242, 0.75);
-  /* Slightly opaque match to main bg */
-  /* padding: 1rem; */
-  border-radius: 4px;
-  /* Optional: softens the box */
-  backdrop-filter: blur(3px);
-  flex-grow: 1;
+    top: 0em;
+    visibility: hidden;
+    max-width:
+    /*56ch*/ 28em;
+    font-size: 1.1em;
+    flex-grow: 1;
 }
 
-#menu:has(a:hover)~#about-text {
-  visibility: visible;
+#menu:has(a:hover) ~ #about-text {
+    visibility: visible;
 }
 
 /* --- Prose & Lists --- */
 .columns {
-  /* 1. Set the MAXIMUM number of columns */
-  column-count: 3;
-  /* 2. Set the ideal/minimum width for each column */
-  /* The browser will create columns of at least this width. */
-  /* It will create 1, 2, or 3 columns (up to the max) to meet this. */
-  column-width: 250px;
-  /* 3. (Recommended) Add a gap between columns for readability */
-  column-gap: 2rem;
+    /* 1. Set the MAXIMUM number of columns */
+    column-count: 3;
+    /* 2. Set the ideal/minimum width for each column */
+    /* The browser will create columns of at least this width. */
+    /* It will create 1, 2, or 3 columns (up to the max) to meet this. */
+    column-width: 250px;
+    /* 3. (Recommended) Add a gap between columns for readability */
+    column-gap: 2rem;
 }
 
-.columns> :first-child {
-  margin-top: 0;
+.columns > :first-child {
+    margin-top: 0;
 }
 
 .indented-prose p {
-  /* 1. Removes the default space above and below paragraphs */
-  margin-top: 0.1em;
-  margin-bottom: 0;
+    /* 1. Removes the default space above and below paragraphs */
+    margin-top: 0.1em;
+    margin-bottom: 0;
 }
 
-.indented-prose p+p {
-  /* 2. Selects every <p> that directly follows another <p>  
+.indented-prose p + p {
+    /* 2. Selects every <p> that directly follows another <p>
       (i.e., all paragraphs except the first one) */
-  text-indent: 1.5em;
-  /* You can adjust this value */
+    text-indent: 1.5em;
+    /* You can adjust this value */
 }
 
 .list-squares ol {
-  list-style-type: square;
-  padding-left: 1em;
+    list-style-type: square;
+    padding-left: 1em;
 }
-
 
 /* =========================================
    5. FONT DEFINITIONS (IBM PLEX)
@@ -296,176 +301,176 @@ a:hover {
 
 /* --- IBM Plex Mono --- */
 .ibm-plex-mono-thin {
-  font-family: "IBM Plex Mono", monospace;
-  /*"ibm-plex-mono" "IBM Plex Mono"*/
-  font-weight: 100;
-  font-style: normal;
+    font-family: "IBM Plex Mono", monospace;
+    /*"ibm-plex-mono" "IBM Plex Mono"*/
+    font-weight: 100;
+    font-style: normal;
 }
 
 .ibm-plex-mono-extralight {
-  font-family: "IBM Plex Mono", monospace;
-  font-weight: 200;
-  font-style: normal;
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 200;
+    font-style: normal;
 }
 
 .ibm-plex-mono-light {
-  font-family: "IBM Plex Mono", monospace;
-  font-weight: 300;
-  font-style: normal;
-  font-variant-numeric: slashed-zero;
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 300;
+    font-style: normal;
+    font-variant-numeric: slashed-zero;
 }
 
 .ibm-plex-mono-regular {
-  font-family: "IBM Plex Mono", monospace;
-  font-weight: 400;
-  font-style: normal;
-  font-variant-numeric: slashed-zero;
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+    font-variant-numeric: slashed-zero;
 }
 
 .ibm-plex-mono-medium {
-  font-family: "IBM Plex Mono", monospace;
-  font-weight: 500;
-  font-style: normal;
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 500;
+    font-style: normal;
 }
 
 .ibm-plex-mono-semibold {
-  font-family: "IBM Plex Mono", monospace;
-  font-weight: 600;
-  font-style: normal;
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 600;
+    font-style: normal;
 }
 
 .ibm-plex-mono-bold {
-  font-family: "IBM Plex Mono", monospace;
-  font-weight: 700;
-  font-style: normal;
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 700;
+    font-style: normal;
 }
 
 .ibm-plex-mono-thin-italic {
-  font-family: "IBM Plex Mono", monospace;
-  font-weight: 100;
-  font-style: italic;
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 100;
+    font-style: italic;
 }
 
 .ibm-plex-mono-extralight-italic {
-  font-family: "IBM Plex Mono", monospace;
-  font-weight: 200;
-  font-style: italic;
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 200;
+    font-style: italic;
 }
 
 .ibm-plex-mono-light-italic {
-  font-family: "IBM Plex Mono", monospace;
-  font-weight: 300;
-  font-style: italic;
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 300;
+    font-style: italic;
 }
 
 .ibm-plex-mono-regular-italic {
-  font-family: "IBM Plex Mono", monospace;
-  font-weight: 400;
-  font-style: italic;
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 400;
+    font-style: italic;
 }
 
 .ibm-plex-mono-medium-italic {
-  font-family: "IBM Plex Mono", monospace;
-  font-weight: 500;
-  font-style: italic;
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 500;
+    font-style: italic;
 }
 
 .ibm-plex-mono-semibold-italic {
-  font-family: "IBM Plex Mono", monospace;
-  /* Fixed missing quote */
-  font-weight: 600;
-  font-style: italic;
+    font-family: "IBM Plex Mono", monospace;
+    /* Fixed missing quote */
+    font-weight: 600;
+    font-style: italic;
 }
 
 .ibm-plex-mono-bold-italic {
-  font-family: "IBM Plex Mono", monospace;
-  font-weight: 700;
-  font-style: italic;
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 700;
+    font-style: italic;
 }
 
 /* --- IBM Plex Serif --- */
 .ibm-plex-serif-thin {
-  font-family: "IBM Plex Serif", serif;
-  font-weight: 100;
-  font-style: normal;
+    font-family: "IBM Plex Serif", serif;
+    font-weight: 100;
+    font-style: normal;
 }
 
 .ibm-plex-serif-extralight {
-  font-family: "IBM Plex Serif", serif;
-  font-weight: 200;
-  font-style: normal;
+    font-family: "IBM Plex Serif", serif;
+    font-weight: 200;
+    font-style: normal;
 }
 
 .ibm-plex-serif-light {
-  font-family: "IBM Plex Serif", serif;
-  font-weight: 300;
-  font-style: normal;
+    font-family: "IBM Plex Serif", serif;
+    font-weight: 300;
+    font-style: normal;
 }
 
 .ibm-plex-serif-regular {
-  font-family: "IBM Plex Serif", serif;
-  font-weight: 400;
-  font-style: normal;
+    font-family: "IBM Plex Serif", serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .ibm-plex-serif-medium {
-  font-family: "IBM Plex Serif", serif;
-  font-weight: 500;
-  font-style: normal;
+    font-family: "IBM Plex Serif", serif;
+    font-weight: 500;
+    font-style: normal;
 }
 
 .ibm-plex-serif-semibold {
-  font-family: "IBM Plex Serif", serif;
-  font-weight: 600;
-  font-style: normal;
+    font-family: "IBM Plex Serif", serif;
+    font-weight: 600;
+    font-style: normal;
 }
 
 .ibm-plex-serif-bold {
-  font-family: "IBM Plex Serif", serif;
-  font-weight: 700;
-  font-style: normal;
+    font-family: "IBM Plex Serif", serif;
+    font-weight: 700;
+    font-style: normal;
 }
 
 .ibm-plex-serif-thin-italic {
-  font-family: "IBM Plex Serif", serif;
-  font-weight: 100;
-  font-style: italic;
+    font-family: "IBM Plex Serif", serif;
+    font-weight: 100;
+    font-style: italic;
 }
 
 .ibm-plex-serif-extralight-italic {
-  font-family: "IBM Plex Serif", serif;
-  font-weight: 200;
-  font-style: italic;
+    font-family: "IBM Plex Serif", serif;
+    font-weight: 200;
+    font-style: italic;
 }
 
 .ibm-plex-serif-light-italic {
-  font-family: "IBM Plex Serif", serif;
-  font-weight: 300;
-  font-style: italic;
+    font-family: "IBM Plex Serif", serif;
+    font-weight: 300;
+    font-style: italic;
 }
 
 .ibm-plex-serif-regular-italic {
-  font-family: "IBM Plex Serif", serif;
-  font-weight: 400;
-  font-style: italic;
+    font-family: "IBM Plex Serif", serif;
+    font-weight: 400;
+    font-style: italic;
 }
 
 .ibm-plex-serif-medium-italic {
-  font-family: "IBM Plex Serif", serif;
-  font-weight: 500;
-  font-style: italic;
+    font-family: "IBM Plex Serif", serif;
+    font-weight: 500;
+    font-style: italic;
 }
 
 .ibm-plex-serif-semibold-italic {
-  font-family: "IBM Plex Serif", serif;
-  font-weight: 600;
-  font-style: italic;
+    font-family: "IBM Plex Serif", serif;
+    font-weight: 600;
+    font-style: italic;
 }
 
 .ibm-plex-serif-bold-italic {
-  font-family: "IBM Plex Serif", serif;
-  font-weight: 700;
-  font-style: italic;
+    font-family: "IBM Plex Serif", serif;
+    font-weight: 700;
+    font-style: italic;
 }
 
 /* --- IBM Plex Sans --- */
@@ -481,56 +486,55 @@ css
 */
 
 .ibm-plex-sans-regular {
-  font-family: "IBM Plex Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-  font-variation-settings: "wdth" 100;
-  font-variant-numeric: slashed-zero;
+    font-family: "IBM Plex Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+    font-variant-numeric: slashed-zero;
 }
 
-
 .ibm-plex-sans-light {
-  font-family: "IBM Plex Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 300;
-  font-style: normal;
-  font-variation-settings: "wdth" 100;
-  font-variant-numeric: slashed-zero;
+    font-family: "IBM Plex Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+    font-variant-numeric: slashed-zero;
 }
 
 .ibm-plex-sans-extralight {
-  font-family: "IBM Plex Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 200;
-  font-style: normal;
-  font-variation-settings: "wdth" 100;
-  font-variant-numeric: slashed-zero;
+    font-family: "IBM Plex Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+    font-variant-numeric: slashed-zero;
 }
 
 .ibm-plex-sans-thin {
-  font-family: "IBM Plex Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 100;
-  font-style: normal;
-  font-variation-settings: "wdth" 100;
-  font-variant-numeric: slashed-zero;
+    font-family: "IBM Plex Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 100;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+    font-variant-numeric: slashed-zero;
 }
 
 .ibm-plex-sans-light-italic {
-  font-family: "IBM Plex Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 300;
-  font-style: italic;
-  font-variation-settings: "wdth" 100;
-  font-variant-numeric: slashed-zero;
+    font-family: "IBM Plex Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: italic;
+    font-variation-settings: "wdth" 100;
+    font-variant-numeric: slashed-zero;
 }
 
 .ibm-plex-sans-extralight-italic {
-  font-family: "IBM Plex Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 200;
-  font-style: italic;
-  font-variation-settings: "wdth" 100;
-  font-variant-numeric: slashed-zero;
+    font-family: "IBM Plex Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: italic;
+    font-variation-settings: "wdth" 100;
+    font-variant-numeric: slashed-zero;
 }
