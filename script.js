@@ -1,157 +1,3 @@
-/*// --- START of canvas-dither.min.js content (pasted here) ---
-Github: https://github.com/NielsLeenheer/CanvasDither
-Unminiified-code: https://github.com/NielsLeenheer/CanvasDither/blob/master/src/canvas-dither.js
-This code has been inlined here, because of issues with sourcing it rmeotely when using CodePen
-to develop the concept/Design. Should be changed in production.
-*/
-!(function (t) {
-  if ("object" == typeof exports && "undefined" != typeof module)
-    module.exports = t();
-  else if ("function" == typeof define && define.amd) define([], t);
-  else {
-    ("undefined" != typeof window
-      ? window
-      : "undefined" != typeof global
-        ? global
-        : "undefined" != typeof self
-          ? self
-          : this
-    ).CanvasDither = t();
-  }
-})(function () {
-  return (function () {
-    return function t(e, a, n) {
-      function r(d, f) {
-        if (!a[d]) {
-          if (!e[d]) {
-            var i = "function" == typeof require && require;
-            if (!f && i) return i(d, !0);
-            if (o) return o(d, !0);
-            var l = new Error("Cannot find module '" + d + "'");
-            throw ((l.code = "MODULE_NOT_FOUND"), l);
-          }
-          var u = (a[d] = { exports: {} });
-          e[d][0].call(
-            u.exports,
-            function (t) {
-              return r(e[d][1][t] || t);
-            },
-            u,
-            u.exports,
-            t,
-            e,
-            a,
-            n,
-          );
-        }
-        return a[d].exports;
-      }
-      for (
-        var o = "function" == typeof require && require, d = 0;
-        d < n.length;
-        d++
-      )
-        r(n[d]);
-      return r;
-    };
-  })()(
-    {
-      1: [
-        function (t, e, a) {
-          e.exports = new (class {
-            grayscale(t) {
-              for (let e = 0; e < t.data.length; e += 4) {
-                const a =
-                  0.299 * t.data[e] +
-                  0.587 * t.data[e + 1] +
-                  0.114 * t.data[e + 2];
-                t.data.fill(a, e, e + 3);
-              }
-              return t;
-            }
-            threshold(t, e) {
-              for (let a = 0; a < t.data.length; a += 4) {
-                const n =
-                  0.299 * t.data[a] +
-                    0.587 * t.data[a + 1] +
-                    0.114 * t.data[a + 2] <
-                    e
-                    ? 0
-                    : 255;
-                t.data.fill(n, a, a + 3);
-              }
-              return t;
-            }
-            bayer(t, e) {
-              const a = [
-                [15, 135, 45, 165],
-                [195, 75, 225, 105],
-                [60, 180, 30, 150],
-                [240, 120, 210, 90],
-              ];
-              for (let n = 0; n < t.data.length; n += 4) {
-                const r =
-                  0.299 * t.data[n] +
-                  0.587 * t.data[n + 1] +
-                  0.114 * t.data[n + 2],
-                  o = (n / 4) % t.width,
-                  d = Math.floor(n / 4 / t.width),
-                  f = Math.floor((r + a[o % 4][d % 4]) / 2) < e ? 0 : 255;
-                t.data.fill(f, n, n + 3);
-              }
-              return t;
-            }
-            floydsteinberg(t) {
-              const e = t.width,
-                a = new Uint8ClampedArray(t.width * t.height);
-              for (let e = 0, n = 0; n < t.data.length; e++, n += 4)
-                a[e] =
-                  0.299 * t.data[n] +
-                  0.587 * t.data[n + 1] +
-                  0.114 * t.data[n + 2];
-              for (let n = 0, r = 0; r < t.data.length; n++, r += 4) {
-                const o = a[n] < 129 ? 0 : 255,
-                  d = Math.floor((a[n] - o) / 16);
-                (t.data.fill(o, r, r + 3),
-                  (a[n + 1] += 7 * d),
-                  (a[n + e - 1] += 3 * d),
-                  (a[n + e] += 5 * d),
-                  (a[n + e + 1] += 1 * d));
-              }
-              return t;
-            }
-            atkinson(t) {
-              const e = t.width,
-                a = new Uint8ClampedArray(t.width * t.height);
-              for (let e = 0, n = 0; n < t.data.length; e++, n += 4)
-                a[e] =
-                  0.299 * t.data[n] +
-                  0.587 * t.data[n + 1] +
-                  0.114 * t.data[n + 2];
-              for (let n = 0, r = 0; r < t.data.length; n++, r += 4) {
-                const o = a[n] < 129 ? 0 : 255,
-                  d = Math.floor((a[n] - o) / 8);
-                (t.data.fill(o, r, r + 3),
-                  (a[n + 1] += d),
-                  (a[n + 2] += d),
-                  (a[n + e - 1] += d),
-                  (a[n + e] += d),
-                  (a[n + e + 1] += d),
-                  (a[n + 2 * e] += d));
-              }
-              return t;
-            }
-          })();
-        },
-        {},
-      ],
-    },
-    {},
-    [1],
-  )(1);
-});
-// --- END of canvas-dither.min.js content ---*/
-
 // --- SET GLOBAL VARIABLES
 let currentImageIndex = -1; // initialise image index
 const img = new Image();
@@ -162,7 +8,6 @@ const DEFAULT_DITHER_COLOR = { r: 40, g: 0, b: 0 }; //OR null for black; //value
 let swapTimer = null; // This will hold the ID of your setInterval
 let isPaused = false; // This tracks the pause state
 
-// --- IMAGE LIST DEFINITION ---
 // --- IMAGE LIST DEFINITION ---
 let imageList = [];
 
@@ -222,7 +67,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   await loadImages();
 
-
   // Shuffle the list one time on load.
   shuffleArray(imageList);
 
@@ -236,35 +80,20 @@ document.addEventListener("DOMContentLoaded", async () => {
   swapImage();
 
   // Run Binary-Filler Code ---
+  // Relies on common.js for fillAllBinarySpans
   document.fonts.ready.then(() => {
     fillAllBinarySpans();
   });
   window.addEventListener("resize", fillAllBinarySpans);
 
   // Run Code for Indexing numbered-header ---
-  // Define the class name you want to target
-  const targetClass = "numbered-header";
-
-  // Select all elements that have this class
-  const headers = document.querySelectorAll(`.${targetClass}`);
-
-  // Loop through each element
-  headers.forEach((header, index) => {
-    // Create the numbered prefix (index starts at 0, so add 1)
-    // Check if the header already starts with a number (to prevent re-numbering on edits)
-    if (!/^\d/.test(header.textContent.trim())) {
-      const prefix = `0${index + 1} `;
-
-      // Prepend the prefix to the element's existing content
-      //header.textContent = prefix + header.textContent;
-      header.insertAdjacentText("afterbegin", prefix);
-    }
-  });
+  // Relies on common.js for initNumberedHeaders
+  initNumberedHeaders("numbered-header");
 
   // DOM FUNCTION DEFINITIONS START //
   // This function now accepts a threshold argument
   function applyDither(imageData, methodName, threshold) {
-    console.log("Applying dither:", methodName);
+    //console.log("Applying dither:", methodName);
 
     // Parse the threshold value (it will be NaN if undefined or invalid)
     const customThreshold = parseInt(threshold, 10);
@@ -276,7 +105,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       case "bayer":
         // Use custom threshold if valid, otherwise default to 96
         const bayerValue = !isNaN(customThreshold) ? customThreshold : 96;
-        console.log(`Using bayer threshold: ${bayerValue}`);
+        //console.log(`Using bayer threshold: ${bayerValue}`);
         return CanvasDither.bayer(imageData, bayerValue);
 
       case "floydsteinberg":
@@ -285,7 +114,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       case "threshold":
         // Use custom threshold if valid, otherwise default to 128
         const thresholdValue = !isNaN(customThreshold) ? customThreshold : 128;
-        console.log(`Using threshold: ${thresholdValue}`);
+        //console.log(`Using threshold: ${thresholdValue}`);
         return CanvasDither.threshold(imageData, thresholdValue);
 
       default:
@@ -318,10 +147,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // If 'enabled' is false, stop right here.
     if (!params.enabled) {
-      console.log("skipping gradient");
+      //console.log("skipping gradient");
       return; // Do nothing
     }
-    console.log("enabled applyting gradient");
+    //console.log("enabled applyting gradient");
     // 2. Create a linear gradient matching your CSS mask's logic
     // We fade from the background color (CSS 'transparent')
     // to fully transparent (CSS 'black') and back.
@@ -442,9 +271,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       // --- ADD THESE 2 LINES (End timer and log) ---
       const endTime = performance.now();
-      console.log(
-        `Image calculation (gradient, dithering, colorization) took: ${endTime - startTime} ms`,
-      );
+      //console.log(`Image calculation (gradient, dithering, colorization) took: ${endTime - startTime} ms`);
     } catch (e) {
       console.error(
         "Dithering failed! Is the 'CanvasDither' object defined?",
@@ -453,41 +280,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }
 
-  /*// --- Tab Interface Logic UNUSED ON COVER PAGE ---
-  // Get all tab link buttons
-  const tabLinks = document.querySelectorAll('.tab-link');
-
-  // Get all tab content panels
-  const tabPanels = document.querySelectorAll('.tab-panel');
-
-  // Add a click event listener to each tab link
-  tabLinks.forEach(function(link) {
-      link.addEventListener('click', function() {
-
-          // Get the target tab panel ID from the 'data-tab' attribute
-          const tabId = link.getAttribute('data-tab');
-
-          // --- Deactivate all tabs and panels ---
-          // Remove 'active' class from all tab links
-          tabLinks.forEach(function(item) {
-              item.classList.remove('active');
-          });
-
-          // Remove 'active' class from all tab panels (hiding them)
-          tabPanels.forEach(function(panel) {
-              panel.classList.remove('active');
-          });
-          // ----------------------------------------
-
-          // --- Activate the clicked tab and its panel ---
-          // Add 'active' class to the clicked tab link
-          link.classList.add('active');
-
-          // Add 'active' class to the corresponding tab panel (showing it)
-          document.getElementById(tabId).classList.add('active');
-          // -----------------------------------------------
-      });
-  });*/
 });
 //< END OF DOM HOOKS
 
@@ -574,174 +366,6 @@ function navigateBackward() {
     currentImageIndex = imageList.length - 1;
   }
   loadCurrentMedia();
-}
-
-function fillAllBinarySpans() {
-  const fillers = document.querySelectorAll(".binary-filler");
-
-  fillers.forEach((filler) => {
-    // 1. Identify the STYLE container (parents are usually good for font styles)
-    const styleContainer = filler.parentElement;
-    if (!styleContainer) return;
-
-    // 2. Identify the LAYOUT container (closest block-like parent)
-    // We walk up the DOM until we find an element that is NOT inline.
-    // This allows us to fill the "line" even if wrapped in a span.
-    let layoutContainer = styleContainer;
-    while (layoutContainer && layoutContainer.parentElement) {
-      const display = window.getComputedStyle(layoutContainer).display;
-      if (display === "inline") {
-        layoutContainer = layoutContainer.parentElement;
-      } else {
-        break;
-      }
-    }
-
-    // Fallback if we somehow didn't find one (shouldn't happen in <body>)
-    if (!layoutContainer) layoutContainer = styleContainer;
-
-    // 3. Get container measurements
-    const containerRect = layoutContainer.getBoundingClientRect();
-    const containerStyle = window.getComputedStyle(layoutContainer);
-
-    // We want to fill up to the right padding edge of the container
-    const paddingRight = parseFloat(containerStyle.paddingRight) || 0;
-    const borderRight = parseFloat(containerStyle.borderRightWidth) || 0;
-    const containerRightEdge = containerRect.right - paddingRight - borderRight;
-
-    // 4. Determine where the "gap" starts
-    let startEdge =
-      containerRect.left + (parseFloat(containerStyle.paddingLeft) || 0);
-
-    // Check previous sibling (Element)
-    const prevEl = filler.previousElementSibling;
-
-    // Check previous sibling (Text Node)
-    const prevNode = filler.previousSibling;
-
-    let styleSource = styleContainer; // Default style source
-
-    if (prevEl) {
-      // Case A: Previous Element Sibling
-      const prevRect = prevEl.getBoundingClientRect();
-      startEdge = prevRect.right;
-      styleSource = prevEl;
-
-      // Ensure they align nicely
-      prevEl.style.display = "inline-block";
-      filler.style.display = "inline-block";
-      prevEl.style.verticalAlign = "bottom";
-      filler.style.verticalAlign = "bottom";
-    } else if (
-      prevNode &&
-      prevNode.nodeType === Node.TEXT_NODE &&
-      prevNode.textContent.trim().length > 0
-    ) {
-      // Case B: Previous Text Node
-      // We use a range to find exactly where the text ends
-      const range = document.createRange();
-      range.selectNodeContents(prevNode);
-      // Collapse to end to get the rect of the last character area
-      const rects = range.getClientRects();
-      if (rects.length > 0) {
-        const lastRect = rects[rects.length - 1]; // The very last line of text
-        startEdge = lastRect.right;
-      }
-      styleSource = styleContainer;
-      filler.style.display = "inline-block";
-      filler.style.verticalAlign = "bottom";
-    } else {
-      // Case C: No previous content, start from container left (already set)
-      filler.style.display = "inline-block";
-      filler.style.verticalAlign = "bottom";
-      styleSource = styleContainer;
-    }
-
-    // 4. Calculate Available Width
-    const remainingWidth = containerRightEdge - startEdge - 5;
-
-    // ---
-    // STYLING & FILLING
-    // ---
-
-    // Copy font metrics for width calculation
-    const computedStyle = window.getComputedStyle(styleSource);
-    filler.style.fontFamily = computedStyle.fontFamily;
-    filler.style.fontSize = computedStyle.fontSize;
-    filler.style.fontWeight = computedStyle.fontWeight; // Keep weight or -100 if preferred? Original had -100
-    // filler.style.fontWeight = (parseInt(computedStyle.fontWeight) - 100).toString(); // Logic from before, maybe optional?
-    // Let's stick to the previous logic of making it slightly lighter if possible, or just same.
-    // The previous code did: filler.style.fontWeight = computedStyle.fontWeight - 100;
-    // Let's preserve that visual quirk if it parses correctly, otherwise fallback.
-    let targetWeight = parseInt(computedStyle.fontWeight) || 400;
-    if (targetWeight > 100) targetWeight -= 100;
-    filler.style.fontWeight = targetWeight;
-
-    filler.style.letterSpacing = computedStyle.letterSpacing;
-    filler.style.lineHeight = computedStyle.lineHeight;
-    // filler.style.color = computedStyle.color; // REMOVED: Inherit from CSS class .fg-grey instead
-
-    // Inherit opacity if needed, or specific classes handle it (.fg-grey)
-
-    const charWidth = getCharWidth(styleSource);
-
-    // ---
-    // LEAD CHAR LOGIC
-    // ---
-    const leadChar = "0";
-    const bufferChars = 0;
-
-    if (charWidth > 0 && remainingWidth > 0) {
-      // Estimate count
-      const totalCharCount = Math.floor(remainingWidth / charWidth);
-      const binaryCharCount = totalCharCount - leadChar.length - bufferChars;
-
-      if (binaryCharCount > 0) {
-        const binaryString = generateBinary(binaryCharCount);
-        filler.textContent = leadChar + binaryString;
-
-        filler.style.whiteSpace = "nowrap";
-        filler.style.overflow = "hidden";
-      } else {
-        filler.textContent = "";
-      }
-    } else {
-      filler.textContent = "";
-    }
-  });
-}
-
-/**
- * Generates a random binary string of a given length.
- * (This function is unchanged)
- */
-function generateBinary(length) {
-  let binaryString = "";
-  for (let i = 0; i < length; i++) {
-    binaryString += Math.round(Math.random());
-  }
-  return binaryString;
-}
-
-/**
- * Calculates the width of a single character ('0') using a style source.
- */
-function getCharWidth(styleSourceElement) {
-  const temp = document.createElement("span");
-  const manual_tweak = 1;
-  temp.textContent = "0";
-  const style = window.getComputedStyle(styleSourceElement);
-  temp.style.fontFamily = style.fontFamily;
-  temp.style.fontSize = style.fontSize;
-  temp.style.fontWeight = style.fontWeight;
-  temp.style.letterSpacing = style.letterSpacing;
-  temp.style.lineHeight = style.lineHeight;
-  temp.style.visibility = "hidden";
-  temp.style.position = "absolute";
-  document.body.appendChild(temp);
-  const width = temp.offsetWidth;
-  document.body.removeChild(temp);
-  return width * manual_tweak;
 }
 
 /**
