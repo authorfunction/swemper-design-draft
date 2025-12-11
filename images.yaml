@@ -16,10 +16,11 @@
   dither: atkinson
   gradientParams: { topStop1: 0, topStop2: 0, enabled: true }
   useOriginalColor: true
-- id: touch_cropped
+- id: hand_mage
   src: ./cover-images/La-kartidningen-1967-0333.jpg
   ditherColor: null
-  gradientParams: { enabled: true, topStop1: 0.01, topStop2: 0.20, topStop3: 0.85, topStop4: 1.0 }
+  dither: atkinson
+  gradientParams: { enabled: true, topStop1: 0.01, topStop2: 0.45, topStop3: 0.85, topStop4: 1.0 }
 - id: gymnastik
   src: ./cover-images/helsovannen_1924_vol001_0062.png
   gradientParams: { topStop1: 0, topStop2: 0, enabled: true }
@@ -46,3 +47,64 @@
 - id: "hygiea_x-ray"
   src: ./cover-images/hygiea_1922_vol001_0768.png
   ditherColor: { r: 250, g: 40, b: 0 }
+- id: "nimativ"
+  src: ./cover-images/svenska_lakartidningen_1955_vol001_0875.png
+  useOriginalColor: true
+  dither: atkinson
+
+- id: röntgen
+  src: ./cover-images/helsovannen_1923_vol001_0159.png
+  dither: atkinson
+- id: mammor
+  src: ./cover-images/jordemodern_1970_vol001_0605.png
+  dither: atkinson
+  ditherColor: { r: 10, g: 140, b: 10 }
+- id: purex
+  src: ./cover-images/jordemodern_1970_vol001_0606.png
+  dither: atkinson
+  ditherColor: { r: 10, g: 140, b: 10 }
+- id: glory
+  src: ./cover-images/sjukskotersketidningen_1933_vol001_0266.png
+  dither: atkinson
+  ditherColor: { r: 10, g: 40, b: 10 }
+- id: reservoir
+  src: ./cover-images/svenska_lakartidningen_1954_vol001_0460.png
+  dither: atkinson
+  ditherColor: { r: 240, g: 40, b: 40 }
+- id: "hygiea_x-ray"
+  src: ./cover-images/svenska_lakartidningen_1958_vol001_0431.png
+  dither: atkinson
+  ditherColor: { r: 240, g: 140, b: 40 }
+- id: brott
+  src: ./cover-images/svenska_lakartidningen_1958_vol002_0640.png
+  dither: atkinson
+
+- id: svenska_lakartidningen_1680
+  src: ./cover-images/svenska_lakartidningen_1943_vol001_1680.png
+  dither: atkinson
+#- id: lakare_pharmaceuter_0245
+#  src: ./cover-images/lakare_pharmaceuter_1837_vol006_0245.png
+#  dither: atkinson
+#  useOriginalColor: true
+- id: veckoskrift_för_läkare_0415
+  src: ./cover-images/veckoskrift_för_läkare_1787_vol008_0415.png
+  dither: atkinson
+  ditherColor: { r: 127, g: 0, b: 0 }
+- id: sls_handlingar_0449
+  src: ./cover-images/sls_handlingar_1822_vol008_0449.png
+  dither: atkinson
+  ditherColor: { r: 127, g: 127, b: 0 }
+- id: lakare_och_fältskärer_0169
+  src: ./cover-images/lakare_och_fältskärer_1803_vol007_0169.png
+  dither: atkinson
+  ditherColor: { r: 0, g: 127, b: 127 }
+- id: veckoskrift_för_läkare_0197
+  src: ./cover-images/veckoskrift_för_läkare_1781_vol001_0197.png
+  dither: atkinson
+  ditherColor: { r: 0, g: 0, b: 127 }
+- id: svenska_lakartidningen_3145
+  src: ./cover-images/svenska_lakartidningen_1943_vol001_3145.png
+  dither: atkinson
+- id: svenska_lakartidningen_2901
+  src: ./cover-images/svenska_lakartidningen_1943_vol001_2901.png
+  dither: atkinson
