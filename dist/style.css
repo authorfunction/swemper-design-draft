@@ -797,6 +797,10 @@ a:hover {
   opacity: 0.5;
 }
 
+.opacity-\[0\.45\] {
+  opacity: 0.45;
+}
+
 .grayscale {
   --tw-grayscale: grayscale(100%);
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
