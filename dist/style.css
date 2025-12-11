@@ -766,10 +766,6 @@ a:hover {
   padding-top: 0.3em;
 }
 
-.text-7xl-custom {
-  font-size: 7.2em;
-}
-
 .text-\[1\.1em\] {
   font-size: 1.1em;
 }
@@ -780,6 +776,34 @@ a:hover {
 
 .text-\[3em\] {
   font-size: 3em;
+}
+
+.text-\[6em\] {
+  font-size: 6em;
+}
+
+.text-\[6\.5em\] {
+  font-size: 6.5em;
+}
+
+.text-\[2em\] {
+  font-size: 2em;
+}
+
+.text-\[2\.2em\] {
+  font-size: 2.2em;
+}
+
+.text-\[6\.2em\] {
+  font-size: 6.2em;
+}
+
+.text-\[1em\] {
+  font-size: 1em;
+}
+
+.text-\[0\.9em\] {
+  font-size: 0.9em;
 }
 
 .leading-\[0\.8\] {

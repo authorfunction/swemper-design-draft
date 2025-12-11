@@ -15,7 +15,7 @@ module.exports = {
                 sans: ['"IBM Plex Sans"', "sans-serif"],
             },
             fontSize: {
-                "7xl-custom": "7.2em", // Matching .large
+                "text-6xl-custom": "6.0em", // Matching .large
             },
         },
     },
