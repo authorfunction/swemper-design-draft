@@ -619,6 +619,15 @@ a:hover {
   border-color: black;
 }
 
+.indented-prose p {
+  margin-top: 0.1em;
+  margin-bottom: 0;
+}
+
+.indented-prose p+p {
+  text-indent: 1.5em;
+}
+
 .absolute {
   position: absolute;
 }
