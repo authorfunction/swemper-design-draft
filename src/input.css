@@ -232,6 +232,21 @@
 
 @layer components {
 
+    /* Legacy Classes */
+    .fg-grey {
+        color: rgba(158, 148, 128, 0.29);
+    }
+
+    .bg-blend {
+        background-color: rgba(245, 244, 242, 0.5);
+    }
+
+    a:hover {
+        background-color: rgb(200 201 177 / 15%);
+        border-radius: 4px;
+        /* Optional but looked nice in previous designs if present */
+    }
+
     /* Arrow Icon */
     .arrow-icon {
         display: inline-block;
@@ -240,6 +255,8 @@
         left: 0.05em;
         line-height: 0.8;
         margin-right: 0.2em;
+        border-width: 1px;
+        /* Tailwind resets borders to 0, so we must be explicit */
         border-style: dashed;
         border-color: black;
     }
