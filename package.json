@@ -1,0 +1,27 @@
+{
+  "name": "swemper-design-draft",
+  "version": "1.0.0",
+  "description": "Link to cover page: [Cover Page](https://authorfunction.github.io/swemper-design-draft/)",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:css": "tailwindcss -i ./src/input.css -o ./dist/style.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/authorfunction/swemper-design-draft.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/authorfunction/swemper-design-draft/issues"
+  },
+  "homepage": "https://github.com/authorfunction/swemper-design-draft#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.4.22",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.19"
+  }
+}

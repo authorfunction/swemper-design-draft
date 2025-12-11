@@ -7,34 +7,38 @@
   <link rel="stylesheet" href="fonts/fonts.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./dist/style.css">
 
 </head>
 
 <body>
-  <div id="main">
-    <canvas id="dither-background"></canvas>
-    <div id="menu" class="">
-      <div class="menu-item-wrapper ibm-plex-sans-extralight menu-item">
+  <div id="main" class="flex flex-col w-[94%] mx-auto relative overflow-hidden pb-[0.6em] pt-[0.3em] h-[98vh]">
+    <canvas id="dither-background" class="absolute top-0 left-0 w-full h-full opacity-50 z-0"></canvas>
+    <div id="menu" class="relative z-10 pb-8">
+      <div
+        class="w-full flex flex-nowrap items-baseline whitespace-nowrap ibm-plex-sans-extralight m-0 text-[2.7em] w-fit">
         <a href='http://cdhu.abm.uu.se/search'>
-          <span class="menu-text numbered-header">Sök i databasen<span class="arrow-icon">↗</span></span>
+          <span class="block numbered-header">Sök i databasen<span class="arrow-icon">↗</span></span>
         </a>
         <span class="binary-filler fg-grey"></span>
       </div>
-      <div class="menu-item-wrapper ibm-plex-sans-extralight menu-item">
+      <div
+        class="w-full flex flex-nowrap items-baseline whitespace-nowrap ibm-plex-sans-extralight m-0 text-[2.7em] w-fit">
         <a href='http://cdhu.abm.uu.se/'>
-          <span class="menu-text numbered-header">Bläddra i databasen<span class="arrow-icon">↗</span></span>
+          <span class="block numbered-header">Bläddra i databasen<span class="arrow-icon">↗</span></span>
         </a>
         <span class="binary-filler fg-grey"></span>
       </div>
-      <div class="menu-item-wrapper ibm-plex-sans-extralight menu-item">
+      <div
+        class="w-full flex flex-nowrap items-baseline whitespace-nowrap ibm-plex-sans-extralight m-0 text-[2.7em] w-fit">
         <a href='https://cdhu.abm.uu.se/swemper_data/dashboard'>
-          <span class="menu-text numbered-header">Utforska dataset<span class="arrow-icon">↗</span></span>
+          <span class="block numbered-header">Utforska dataset<span class="arrow-icon">↗</span></span>
         </a>
         <span class="binary-filler fg-grey"></span>
       </div>
     </div>
-    <div id="about-text" class="indented-prose hyphenate ibm-plex-sans-regular">
+    <div id="about-text"
+      class="indented-prose hyphenate ibm-plex-sans-regular relative z-10 pb-8 absolute top-0 invisible max-w-[28em] text-[1.1em] flex-grow">
       <p>Sedan 1700-talet har medicinska tidskrifter kartlagt människans villkor – födelse, död, smärta och sjukdom. De
         har noggrant dokumenterat en pågående dialog mellan vårdpersonal, patienter och allmänhet. Genom skiftande
         visuella och textuella uttryck materialiserar dessa publikationer historiska nyckelhändelser och vändpunkter:
@@ -44,11 +48,13 @@
         svensk medicinhistoria. Unikt är att den inte vara innehåller material från läkare, vårdpersonal och
         folkbildare, utan också från läkarstudenter och patienter. </p>
     </div>
-    <div id="bottom">
-      <div id="swemper" class="">
-        <span id="acronym" class="ibm-plex-sans-light" style=""><span class="acronym-text">SWEMPER</span><span
+    <div id="bottom" class="mt-auto">
+      <div id="swemper" class="relative z-10 pb-8 pt-0 mt-0">
+        <span id="acronym" class="ibm-plex-sans-light text-7xl-custom tracking-[-0.4rem] leading-[1.12em]"
+          style=""><span class="acronym-text">SWEMPER</span><span
             class="binary-filler x-transparent fg-grey slashed"></span></span>
-        <span id="text" class="ibm-plex-sans-extralight hyphenate medium slashed" style="">Digitalisering av svenska
+        <span id="text" class="ibm-plex-sans-extralight hyphenate text-[3em] slashed block leading-[1.1em]"
+          style="">Digitalisering av svenska
           medicinska tidskrifter, 1781–2011<span class="binary-filler fg-grey"></span></span>
       </div>
       <!--div class="smaller ibm-plex-mono-regular">Uppsala unviersitet, Uppsala unviersitetsbibliotek, Rikarkivets enhet
