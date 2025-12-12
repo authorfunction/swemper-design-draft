@@ -602,16 +602,12 @@ a:hover {
   position: relative;
 }
 
-.left-0 {
-  left: 0px;
+.right-0 {
+  right: 0px;
 }
 
 .top-0 {
   top: 0px;
-}
-
-.right-0 {
-  right: 0px;
 }
 
 .z-0 {
@@ -666,10 +662,6 @@ a:hover {
 
 .w-full {
   width: 100%;
-}
-
-.w-1\/2 {
-  width: 50%;
 }
 
 .max-w-\[28em\] {
