@@ -13,14 +13,21 @@
   ditherColor: { r: 0, g: 0, b: 40 }
 - id: old_new_media
   src: ./cover-images/svenska-lakartidningen-1975-3920-stor.jpg
-  dither: atkinson
+  dither: bayer
   gradientParams: { topStop1: 0, topStop2: 0, enabled: true }
   useOriginalColor: true
 - id: hand_mage
   src: ./cover-images/La-kartidningen-1967-0333.jpg
   ditherColor: null
   dither: atkinson
-  gradientParams: { enabled: true, topStop1: 0.01, topStop2: 0.45, topStop3: 0.85, topStop4: 1.0 }
+  gradientParams:
+    {
+      enabled: true,
+      topStop1: 0.01,
+      topStop2: 0.45,
+      topStop3: 0.85,
+      topStop4: 1.0,
+    }
 - id: gymnastik
   src: ./cover-images/helsovannen_1924_vol001_0062.jpg
   gradientParams: { topStop1: 0, topStop2: 0, enabled: true }
@@ -28,7 +35,14 @@
 - id: elanders
   src: ./cover-images/sjukskotersketidningen_1914_vol001_0347.jpg
   ditherColor: { r: 0, g: 0, b: 100 }
-  gradientParams: { enabled: true, topStop1: 0.05, topStop2: 0.35, topStop3: 0.65, topStop4: 1.0 }
+  gradientParams:
+    {
+      enabled: true,
+      topStop1: 0.05,
+      topStop2: 0.35,
+      topStop3: 0.65,
+      topStop4: 1.0,
+    }
 - id: halspastiller
   src: ./cover-images/mtf_motpol_1961_vol001_0133.jpg
   ditherColor: { r: 0, g: 100, b: 100 }

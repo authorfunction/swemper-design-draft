@@ -13,12 +13,12 @@ let imageList = [];
 
 async function loadImages() {
   try {
-    const response = await fetch('./images.yaml');
+    const response = await fetch("./images.yaml");
     const text = await response.text();
     imageList = jsyaml.load(text);
-    console.log('Images loaded:', imageList);
+    console.log("Images loaded:", imageList);
   } catch (e) {
-    console.error('Failed to load images.yaml', e);
+    console.error("Failed to load images.yaml", e);
   }
 }
 
@@ -167,7 +167,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   function render() {
-    const containerWidth = mainElement.clientWidth;
+    const containerWidth = canvas.clientWidth;
     const containerHeight = mainElement.clientHeight;
 
     canvas.width = containerWidth;
@@ -279,7 +279,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       );
     }
   }
-
 });
 //< END OF DOM HOOKS
 
